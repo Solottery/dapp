@@ -56,12 +56,15 @@ const App: React.FC = () => {
                                     <Menu/>
                                     <IonRouterOutlet id="main">
                                         <Route path="/" exact={true}>
-                                            <Redirect to="/solotter-frontend/home"/>
+                                            <Redirect to="/dapp/home"/>
                                         </Route>
-                                        <Route path="/solotter-frontend/home" exact={true}>
+                                        <Route path="/dapp" exact={true}>
+                                            <Redirect to="/dapp/home"/>
+                                        </Route>
+                                        <Route path="/dapp/home" exact={true}>
                                             <Page/>
                                         </Route>
-                                        <Route path="/solotter-frontend/mint">
+                                        <Route path="/dapp/mint">
                                             <Mint/>
                                         </Route>
                                     </IonRouterOutlet>

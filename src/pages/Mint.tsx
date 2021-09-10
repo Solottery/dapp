@@ -41,7 +41,7 @@ const Mint: React.FC = () => {
                     <IonRow>
                         <IonCol class="center-grid">
                             <IonCard id="mint-card">
-                                <IonImg src="solotter-frontend/assets/img/4461.png"/>
+                                <IonImg src="dapp/assets/img/4461.png"/>
                                 <IonCardHeader className="ion-align-self-center">
                                     <IonCardTitle id="mint-card-title">
                                         Genesis Solottery Ticket

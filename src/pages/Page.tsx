@@ -30,7 +30,7 @@ const Page: React.FC = () => {
                     className="your-class"
                     layers={[
                         {
-                            image: 'solotter-frontend/assets/img/background.png',
+                            image: 'dapp/assets/img/background.png',
                             amount: 0,
                         },
                     ]}
