@@ -56,12 +56,12 @@ const App: React.FC = () => {
                                     <Menu/>
                                     <IonRouterOutlet id="main">
                                         <Route path="/" exact={true}>
-                                            <Redirect to="/home"/>
+                                            <Redirect to="/solotter-frontend/home"/>
                                         </Route>
-                                        <Route path="/home" exact={true}>
+                                        <Route path="/solotter-frontend/home" exact={true}>
                                             <Page/>
                                         </Route>
-                                        <Route path="/mint">
+                                        <Route path="/solotter-frontend/mint">
                                             <Mint/>
                                         </Route>
                                     </IonRouterOutlet>

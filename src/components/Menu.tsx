@@ -24,25 +24,25 @@ interface AppPage {
 const appPages: AppPage[] = [
     {
         title: 'Home',
-        url: '/home',
+        url: '/solotter-frontend/home',
         iosIcon: home,
         mdIcon: home
     },
     {
         title: 'Mint Tickets',
-        url: '/mint',
+        url: '/solotter-frontend/mint',
         iosIcon: colorWand,
         mdIcon: colorWand
     },
     {
         title: 'Rarity',
-        url: '/rarity',
+        url: '/solotter-frontend/rarity',
         iosIcon: rocket,
         mdIcon: rocket
     },
     {
         title: 'Lottery',
-        url: '/lottery',
+        url: '/solotter-frontend/lottery',
         iosIcon: gift,
         mdIcon: gift
     },
