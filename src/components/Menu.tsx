@@ -24,25 +24,25 @@ interface AppPage {
 const appPages: AppPage[] = [
     {
         title: 'Home',
-        url: '/dapp/home',
+        url: '/home',
         iosIcon: home,
         mdIcon: home
     },
     {
         title: 'Mint Tickets',
-        url: '/dapp/mint',
+        url: '/mint',
         iosIcon: colorWand,
         mdIcon: colorWand
     },
     {
         title: 'Rarity',
-        url: '/dapp/rarity',
+        url: '/rarity',
         iosIcon: rocket,
         mdIcon: rocket
     },
     {
         title: 'Lottery',
-        url: '/dapp/lottery',
+        url: '/lottery',
         iosIcon: gift,
         mdIcon: gift
     },

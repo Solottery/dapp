@@ -51,20 +51,20 @@ const App: React.FC = () => {
                 <WalletProvider wallets={wallets} autoConnect={true}>
                     <WalletModalProvider>
                         <ParallaxProvider>
-                            <IonReactRouter>
+                            <IonReactRouter basename={process.env.PUBLIC_URL}>
                                 <IonSplitPane contentId="main">
                                     <Menu/>
                                     <IonRouterOutlet id="main">
                                         <Route path="/" exact={true}>
-                                            <Redirect to="/dapp/home"/>
+                                            <Redirect to="/home"/>
                                         </Route>
                                         <Route path="/dapp" exact={true}>
-                                            <Redirect to="/dapp/home"/>
+                                            <Redirect to="/home"/>
                                         </Route>
-                                        <Route path="/dapp/home" exact={true}>
+                                        <Route path="/home" exact={true}>
                                             <Page/>
                                         </Route>
-                                        <Route path="/dapp/mint">
+                                        <Route path="/mint">
                                             <Mint/>
                                         </Route>
                                     </IonRouterOutlet>
