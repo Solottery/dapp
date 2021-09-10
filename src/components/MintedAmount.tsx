@@ -22,7 +22,7 @@ const MintedAmount: React.FC = () => {
         setRemaining(info.itemsRemaining);
 
 
-        await getCandyMachineMints(connection.connection, MY_CANDY_MACHINE_ID);
+        // await getCandyMachineMints(connection.connection, MY_CANDY_MACHINE_ID);
 
     }, [connection, wallet]);
 
@@ -30,7 +30,10 @@ const MintedAmount: React.FC = () => {
         const fetchData = async () => {
             await getMintedAmount();
         }
-        fetchData()
+        const interval = setInterval(() => {
+            fetchData()
+        }, 30000);
+        return () => clearInterval(interval);
     }, [getMintedAmount]);
 
     return (

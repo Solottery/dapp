@@ -16,6 +16,7 @@ import {
 import {TOKEN_METADATA_PROGRAM_ID, TOKEN_PROGRAM_ID} from "../helpers/constants";
 import {createAssociatedTokenAccountInstruction} from "../helpers/instructions";
 import MintedAmount from "./MintedAmount";
+import {awaitTransactionSignatureConfirmation} from "../helpers/candy-machine";
 
 
 const MintButton: React.FC = () => {
@@ -32,7 +33,7 @@ const MintButton: React.FC = () => {
         }
 
         const mint = Keypair.generate();
-        const cacheContent = {"program":{"uuid":"6cVeC5","config":"6cVeC5dWDcoqREDxX914MBzwCesZ4A1RuiAknABw1LEu"}};
+        const cacheContent = {"program":{"uuid":"GdiUuy","config":"GdiUuyTrtrdyCLMohqfvSTK3y3gMRUUHGb3Yj9BJeRX2"}};
 
         const anchorProgram = await loadAnchorProgram(wallet, connection.connection);
         const userTokenAccountAddress = await getTokenWallet(
@@ -109,8 +110,35 @@ const MintButton: React.FC = () => {
                 ],
             });
             console.log('Done', tx);
-        }catch (e){
-            console.log(e);
+
+            const result = await awaitTransactionSignatureConfirmation(tx,
+                500,
+                connection.connection,
+                "singleGossip",
+                true);
+
+            if (!(result as any).err) {
+                await present("Congratulations! Mint succeeded!", 500);
+            } else {
+                await present("Mint failed! Please try again!", 500);
+            }
+        }catch (error: any){
+            let message = error.msg || "Minting failed! Please try again!";
+            if (!error.msg) {
+                if (error.message.indexOf("0x138")) {
+                } else if (error.message.indexOf("0x137")) {
+                    message = `SOLD OUT!`;
+                } else if (error.message.indexOf("0x135")) {
+                    message = `Insufficient funds to mint. Please fund your wallet.`;
+                }
+            } else {
+                if (error.code === 311) {
+                    message = `SOLD OUT!`;
+                } else if (error.code === 312) {
+                    message = `Minting period hasn't started yet.`;
+                }
+            }
+            await present(message, 500);
         }
     }, [wallet, connection, present]);
 

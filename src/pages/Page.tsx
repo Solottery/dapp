@@ -35,7 +35,7 @@ const Page: React.FC = () => {
                         },
                     ]}
                     style={{
-                        height: '100%',
+                        height: '80%',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'auto'
                     }}
