@@ -26,10 +26,12 @@ import Mint from "./pages/Mint";
 import {ConnectionProvider, WalletProvider} from "@solana/wallet-adapter-react";
 import {WalletModalProvider} from "@solana/wallet-adapter-react-ui";
 import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
-import {useMemo} from "react";
+import {useEffect, useMemo} from "react";
 import {clusterApiUrl} from "@solana/web3.js";
 import {getPhantomWallet, getSolflareWallet} from "@solana/wallet-adapter-wallets";
 import {ParallaxProvider} from "react-scroll-parallax";
+import Rarity from "./pages/Rarity";
+import Lottery from "./pages/Lottery";
 
 const App: React.FC = () => {
     // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
@@ -44,6 +46,11 @@ const App: React.FC = () => {
         getPhantomWallet(),
         getSolflareWallet(),
     ], []);
+
+    useEffect(() => {
+        document.body.classList.toggle('dark');
+        console.log("dark");
+    })
 
     return (
         <IonApp>
@@ -66,6 +73,12 @@ const App: React.FC = () => {
                                         </Route>
                                         <Route path="/mint">
                                             <Mint/>
+                                        </Route>
+                                        <Route path="/rarity">
+                                            <Rarity/>
+                                        </Route>
+                                        <Route path="/lottery">
+                                            <Lottery/>
                                         </Route>
                                     </IonRouterOutlet>
                                 </IonSplitPane>

@@ -52,9 +52,11 @@ const Menu: React.FC = () => {
     const location = useLocation();
 
     return (
-        <IonMenu contentId="main" type="overlay">
+        <IonMenu contentId="main" type="overlay" style={{
+            backgroundImage: `url("assets/img/sidemenu.png) !important`
+        }}>
             <IonContent>
-                <IonList id="inbox-list">
+                <IonList id="inbox-list" >
                     <IonListHeader>Solottery</IonListHeader>
                     <IonNote> </IonNote>
                     {appPages.map((appPage, index) => {

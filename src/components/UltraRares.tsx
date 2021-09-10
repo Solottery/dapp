@@ -7,14 +7,14 @@ const ultraRare = [
         "img": "420.png",
         "amount": 1,
         "border": "green",
-        "description": ""
+        "description": "The reason we designed this NFT is probably illegal in your country."
     },
     {
         "name": "69",
         "img": "69.png",
         "amount": 1,
         "border": "red",
-        "description": ""
+        "description": "69 – like working on your day off."
     },
 ]
 

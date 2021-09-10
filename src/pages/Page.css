@@ -6,3 +6,9 @@ ion-toolbar {
     --background: #4FC3F7;
 }
 
+.welcome-card {
+    max-width: 50%;
+    min-width: 400px;
+    margin: auto;
+    padding: 10px;
+}

@@ -8,6 +8,7 @@
 .center-grid-color {
   justify-content: center;
   background-color: #37474F;
+  min-height: 370px;
 }
 
 .card-title-center {

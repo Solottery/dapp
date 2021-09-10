@@ -1,8 +1,4 @@
-import {
-    IonButtons, IonContent,
-    IonHeader, IonMenuButton,
-    IonPage, IonTitle, IonToolbar,
-} from '@ionic/react';
+import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar,} from '@ionic/react';
 import './Page.css';
 import RoadMap from "../components/RoadMap";
 import FAQ from "../components/FAQ";
@@ -35,12 +31,15 @@ const Page: React.FC = () => {
                         },
                     ]}
                     style={{
-                        height: '80%',
+                        height: '70%',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'auto'
                     }}
                 >
-                    <Welcome/>
+                    <div className='welcome-card'>
+                        <Welcome />
+                    </div>
+
                 </ParallaxBanner>
 
                 <RoadMap/>

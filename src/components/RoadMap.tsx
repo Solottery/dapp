@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: 'rgba(255, 255, 255, 0)'
         },
         stepItem: {
-          color: 'white'
+            color: 'var(--ion-color-favorite-contrast)'
         },
         button: {
             marginRight: theme.spacing(1),
@@ -31,33 +31,23 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-    return ['Genesis Mint', 'First Lottery', 'Lottery Dapp', 'One Time Ticket sales', 'Gaming'];
+    return ['The presale', 'The first jackpot', 'The Main sale', 'The Ticket market', 'The fee lottery', 'The expanding'];
 }
 
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`;
+            return 'We open our presale with 200 Tickets to mint. Mint your ticket for the first NFT lottery. Our infrastructure builds on the candy machine – fair distribution guaranteed.';
         case 1:
-            return 'An ad group contains one or more ads which target a shared set of keywords.';
+            return 'Are the odds with you? The first drawing will reveal it. Don’t waste the chance to win your own fortune! As soon as the presale is over, the first winner in the history of Solana NFT lotterys will get his wallet filled with sweet, sweet jackpot cash.\n';
         case 2:
-            return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+            return 'The Main sale will with the other 9’800 tickets will open after the presale winner is announced.';
         case 3:
-            return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+            return 'Trade the tickets on a NFT Marketplace. We are in talk with the leading NFT market places.';
         case 4:
-            return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
-
+            return 'Release of our additional one-way tickets. The first row will be an airdrop to the owner addresses of the genesis NFTs. The Pot will be filled with fees from marketplace trading. ';
+        case 5:
+            return 'Release one-way tickets on a regular basis to generate more pots for more winners.';
         default:
             return 'Unknown step';
     }
@@ -92,29 +82,29 @@ const RoadMap: React.FC = () => {
                     Roadmap
                 </IonCardTitle>
                 <IonCardContent>
-                        <Stepper alternativeLabel nonLinear activeStep={activeStep} className={classes.transparent}>
-                            {steps.map((label, index) => {
-                                const stepProps: { completed?: boolean } = {};
-                                const buttonProps: { optional?: React.ReactNode } = {};
+                    <Stepper alternativeLabel nonLinear activeStep={activeStep} className={classes.transparent}>
+                        {steps.map((label, index) => {
+                            const stepProps: { completed?: boolean } = {};
+                            const buttonProps: { optional?: React.ReactNode } = {};
 
-                                if (isStepSkipped(index)) {
-                                    stepProps.completed = false;
-                                }
-                                return (
-                                    <Step key={label} {...stepProps} className={classes.stepItem}>
-                                        <StepButton
-                                            className={classes.stepItem}
-                                            onClick={handleStep(index)}
-                                            completed={isStepComplete(index)}
-                                            {...buttonProps}
-                                        >
-                                            <IonText className={classes.stepItem}>{label}</IonText>
-                                        </StepButton>
-                                    </Step>
-                                );
-                            })}
-                        </Stepper>
-                        <IonText>{getStepContent(activeStep)}</IonText>
+                            if (isStepSkipped(index)) {
+                                stepProps.completed = false;
+                            }
+                            return (
+                                <Step key={label} {...stepProps} className={classes.stepItem}>
+                                    <StepButton
+                                        className={classes.stepItem}
+                                        onClick={handleStep(index)}
+                                        completed={isStepComplete(index)}
+                                        {...buttonProps}
+                                    >
+                                        <IonText className={classes.stepItem}>{label}</IonText>
+                                    </StepButton>
+                                </Step>
+                            );
+                        })}
+                    </Stepper>
+                    <IonText>{getStepContent(activeStep)}</IonText>
                 </IonCardContent>
             </IonCardHeader>
         </IonCard>

@@ -19,7 +19,9 @@ const Ticket: (probs: TicketProbs) => JSX.Element = (probs: TicketProbs) => {
                 <IonImg className={'ticket-image'} src={"assets/tickets/" + probs.name + ".png"}/>
                 <IonCardContent>
                     {probs.description}
-                    {probs.amount}
+                    <br/>
+                    <br/>
+                    Mintable amount: {probs.amount}
                 </IonCardContent>
             </IonCardHeader>
         </IonCard>
