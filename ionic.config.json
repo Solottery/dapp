@@ -1,0 +1,7 @@
+{
+  "name": "sol-lottery",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

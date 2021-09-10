@@ -1,0 +1,18 @@
+#mint-card {
+  max-width: 800px;
+  min-width: 300px;
+  margin: auto;
+  width: 50%;
+  border: 3px solid gold;
+  padding: 10px;
+  top: 25%;
+}
+
+.center-grid {
+  justify-content: center;
+}
+
+#mint-card-title {
+  text-align: center !important;
+  font-size: xx-large !important;
+}

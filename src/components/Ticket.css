@@ -1,0 +1,15 @@
+.ticket-image {
+  max-width: 300px;
+  min-width: 300px;
+  margin: auto;
+  padding: 10px;
+}
+
+.center-grid-color {
+  justify-content: center;
+  background-color: #37474F;
+}
+
+.card-title-center {
+  text-align: center !important;
+}
