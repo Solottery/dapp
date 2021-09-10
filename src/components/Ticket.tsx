@@ -16,7 +16,7 @@ const Ticket: (probs: TicketProbs) => JSX.Element = (probs: TicketProbs) => {
                 <IonCardTitle className='card-title-center'>
                     {probs.name}
                 </IonCardTitle>
-                <IonImg className={'ticket-image'} src={"dapp/assets/tickets/" + probs.name + ".png"}/>
+                <IonImg className={'ticket-image'} src={"assets/tickets/" + probs.name + ".png"}/>
                 <IonCardContent>
                     {probs.description}
                     {probs.amount}
