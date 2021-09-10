@@ -33,7 +33,7 @@ const MintButton: React.FC = () => {
         }
 
         const mint = Keypair.generate();
-        const cacheContent = {"program":{"uuid":"GdiUuy","config":"GdiUuyTrtrdyCLMohqfvSTK3y3gMRUUHGb3Yj9BJeRX2"}};
+        const cacheContent = {"program":{"uuid":"5YxaEc","config":"5YxaEcMDheXQnP85sPSRdRAa5FdSNgAD7tfjjx35FotU"}};
 
         const anchorProgram = await loadAnchorProgram(wallet, connection.connection);
         const userTokenAccountAddress = await getTokenWallet(

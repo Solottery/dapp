@@ -19,7 +19,7 @@ export const TOKEN_PROGRAM_ID = new PublicKey(
 );
 
 export const MY_CANDY_MACHINE_ID = new PublicKey(
-    'FgadeaVYraGBkkUqfK8nTR7cs45PKmLMcjLpPvqaywSr'
+    'FSLHV7AECghMGW7LDN4ay9d6zERLiS7pkzvNry2NiXPU'
 );
 
 export const CONFIG_ARRAY_START =

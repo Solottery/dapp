@@ -93,7 +93,7 @@ const FAQ: React.FC = () => {
                         <AccordionDetails>
                             <Typography>
                                 We liked this project since the beginning and so will you. If we only chose one winner
-                                then the whole lottery will be over. We decided to run the lottery over a longer period
+                                then the whole lottery would be over. We decided to run the lottery over a longer period
                                 of time.
                             </Typography>
                         </AccordionDetails>
@@ -112,7 +112,7 @@ const FAQ: React.FC = () => {
                                 It varies, we will manage our jackpot funds carefully so we can run the project over a
                                 long time. Most of the prices are Solana coins but we plan to make special jackpots with
                                 NFTs. The amount which can be won will be published right after the announcement of the
-                                previous winner. Take a lock at the rare NFTs where the jackpot can get multiplied up to
+                                previous winner. Take a look at the rare NFTs where the jackpot can get multiplied up to
                                 x2.
 
                             </Typography>
@@ -131,7 +131,7 @@ const FAQ: React.FC = () => {
                         <AccordionDetails>
                             <Typography>
                                 As you already guess it – the market will decide. But you should remember the fact that
-                                we generate lucky winners on a regular basis. As long as the lottery is going on the
+                                we generate lucky winners on a regular basis. As long as the lottery is going on, the
                                 tickets will have an intrinsic value. If you take a glance at the NFT markets, there is
                                 a lot of art where the price is determined by the taste of the buyer.
                             </Typography>

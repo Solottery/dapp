@@ -16,7 +16,7 @@ const Welcome: React.FC = () => {
                     <br/>
                     We throw the ticket revenues in a pot called Jack. <br/>
                     The genesis collection will be valid for all the coming drawings.<br/>
-                    There will be weekly or more frequent lotteries with one or multible winners.
+                    There will be weekly or more frequent lotteries with one or multiple winners.
                     <br/>
                     We will listen closely to the wishes of the community.
                     <br/>

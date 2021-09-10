@@ -41,9 +41,9 @@ function getStepContent(step) {
         case 1:
             return 'Are the odds with you? The first drawing will reveal it. Don’t waste the chance to win your own fortune! As soon as the presale is over, the first winner in the history of Solana NFT lotterys will get his wallet filled with sweet, sweet jackpot cash.\n';
         case 2:
-            return 'The Main sale will with the other 9’800 tickets will open after the presale winner is announced.';
+            return 'The main sale with the other 9’800 tickets will open after the presale winner is announced.';
         case 3:
-            return 'Trade the tickets on a NFT Marketplace. We are in talk with the leading NFT market places.';
+            return 'Trade the tickets on the main SOL NFT marketplace.';
         case 4:
             return 'Release of our additional one-way tickets. The first row will be an airdrop to the owner addresses of the genesis NFTs. The Pot will be filled with fees from marketplace trading. ';
         case 5:
