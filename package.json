@@ -2,6 +2,7 @@
   "name": "sol-lottery",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://solottery.github.io/solotter-frontend",
   "dependencies": {
     "@capacitor/app": "1.0.3",
     "@capacitor/core": "3.2.2",
