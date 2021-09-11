@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: 'rgba(255, 255, 255, 0)'
         },
         stepItem: {
-            color: 'var(--ion-color-favorite-contrast)'
+            color: 'var(--ion-text-color)'
         },
         button: {
             marginRight: theme.spacing(1),

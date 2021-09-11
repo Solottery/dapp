@@ -9,7 +9,7 @@ const MintedAmount: React.FC = () => {
 
     const connection = useConnection();
     const wallet = useWallet();
-    const total = 10000;
+    const [total, setTotal] = useState(0)
     const [remaining, setRemaining] = useState(0)
 
     const getMintedAmount = useCallback(async () => {
@@ -20,7 +20,7 @@ const MintedAmount: React.FC = () => {
         } as anchor.Wallet;
         const info = await getCandyMachineState(anchorWallet, MY_CANDY_MACHINE_ID, connection.connection)
         setRemaining(info.itemsRemaining);
-
+        setTotal(info.itemsAvailable);
 
         // await getCandyMachineMints(connection.connection, MY_CANDY_MACHINE_ID);
 
@@ -33,6 +33,7 @@ const MintedAmount: React.FC = () => {
         const interval = setInterval(() => {
             fetchData()
         }, 30000);
+        fetchData()
         return () => clearInterval(interval);
     }, [getMintedAmount]);
 
