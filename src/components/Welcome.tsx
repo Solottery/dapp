@@ -4,7 +4,7 @@ import './Ticket.css';
 
 const Welcome: React.FC = () => {
     return (
-        <IonCard>
+        <IonCard className='card-with-gold'>
             <IonCardHeader>
                 <IonCardTitle className='card-title-center'>
                     Introdoucing Solottery

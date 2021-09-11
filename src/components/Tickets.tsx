@@ -48,7 +48,7 @@ const images = [
         "name": "Boring Red",
         "img": "Rot.png",
         "amount": 1500,
-        "description": "Sdgfljmksgtrkokoöi – sorry my head fell on the keyboard because I felt asleep just by looking at this boring red. ",
+        "description": "Sdgfljmksgtrkokoöi – sorry my head fell on the keyboard because I fell asleep just by looking at this boring red. ",
     },
     {
         "name": "Snail",

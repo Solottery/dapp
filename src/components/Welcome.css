@@ -3,3 +3,7 @@
 .card-title-center {
   text-align: center !important;
 }
+
+.card-with-gold {
+  border: 3px solid gold !important;
+}

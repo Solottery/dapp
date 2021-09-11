@@ -72,6 +72,29 @@ const FAQ: React.FC = () => {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
+                            <Typography className={classes.heading}>What are the multipliers?</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                There are two multiplier attributes in each ticket.<br/>
+                                <br/>
+                                The play multiplier gives a ticket a certain weigth in the lottery. <br/>
+                                If you ticket has the play multiplier of 2 its two entries in the lottery for you.
+                                <br/>
+                                <br/>
+                                The win multiplier will make your winnings bigger. <br/>
+                                If the jackpot is 10 sol and you win with the rarest ticket which has a win multiplier of
+                                2, you win 20 sol!
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                        >
                             <Typography className={classes.heading}>When does the main sale start?</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
