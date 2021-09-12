@@ -1,80 +1,35 @@
-import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonText} from "@ionic/react";
-import {useState} from "react";
-import {createStyles, makeStyles, Step, StepButton, Stepper, Theme} from "@material-ui/core";
+import {IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/react";
+import {useEffect, useState} from "react";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    createStyles,
+    makeStyles,
+    Theme,
+    Typography
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            width: '100%'
+            width: '100%',
         },
-        transparent: {
-            backgroundColor: 'rgba(255, 255, 255, 0)'
+        heading: {
+            fontSize: theme.typography.pxToRem(15),
+            fontWeight: theme.typography.fontWeightRegular,
         },
-        stepItem: {
-            color: 'var(--ion-text-color)'
-        },
-        button: {
-            marginRight: theme.spacing(1),
-        },
-        backButton: {
-            marginRight: theme.spacing(1),
-        },
-        completed: {
-            display: 'inline-block',
-        },
-        instructions: {
-            marginTop: theme.spacing(1),
-            marginBottom: theme.spacing(1),
-        },
+        acordionBackground: {
+            backgroundColor: '#90A4AE'
+        }
     }),
 );
 
-function getSteps() {
-    return ['The presale', 'The first jackpot', 'The Main sale', 'The Ticket market', 'The fee lottery', 'The expanding'];
-}
-
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return 'We open our presale with 200 Tickets to mint. Mint your ticket for the first NFT lottery. Our infrastructure builds on the candy machine – fair distribution guaranteed.';
-        case 1:
-            return 'Are the odds with you? The first drawing will reveal it. Don’t waste the chance to win your own fortune! As soon as the presale is over, the first winner in the history of Solana NFT lotterys will get his wallet filled with sweet, sweet jackpot cash.\n';
-        case 2:
-            return 'The main sale with the other 9’800 tickets will open after the presale winner is announced.';
-        case 3:
-            return 'Trade the tickets on the main SOL NFT marketplace.';
-        case 4:
-            return 'Release of our additional one-way tickets. The first row will be an airdrop to the owner addresses of the genesis NFTs. The Pot will be filled with fees from marketplace trading. ';
-        case 5:
-            return 'Release one-way tickets on a regular basis to generate more pots for more winners.';
-        default:
-            return 'Unknown step';
-    }
-}
-
 
 const RoadMap: React.FC = () => {
-
     const classes = useStyles();
-    const [activeStep, setActiveStep] = useState(0);
-    const [completed, setCompleted] = useState(new Set<number>());
-    const [skipped, setSkipped] = useState(new Set<number>());
-    const steps = getSteps();
-
-
-    const handleStep = (step: number) => () => {
-        setActiveStep(step);
-    };
-
-    const isStepSkipped = (step: number) => {
-        return skipped.has(step);
-    };
-
-    function isStepComplete(step: number) {
-        return completed.has(step);
-    }
-
     return (
         <IonCard>
             <IonCardHeader>
@@ -82,29 +37,105 @@ const RoadMap: React.FC = () => {
                     Roadmap
                 </IonCardTitle>
                 <IonCardContent>
-                    <Stepper alternativeLabel nonLinear activeStep={activeStep} className={classes.transparent}>
-                        {steps.map((label, index) => {
-                            const stepProps: { completed?: boolean } = {};
-                            const buttonProps: { optional?: React.ReactNode } = {};
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            <Typography>1. The presale</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                To evaluate interests and reward early investors we start a presale with 200 Tickets.<br/>
+                                These tickets are randomly selected from the genesis collection of 10.000 Tickets.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
 
-                            if (isStepSkipped(index)) {
-                                stepProps.completed = false;
-                            }
-                            return (
-                                <Step key={label} {...stepProps} className={classes.stepItem}>
-                                    <StepButton
-                                        className={classes.stepItem}
-                                        onClick={handleStep(index)}
-                                        completed={isStepComplete(index)}
-                                        {...buttonProps}
-                                    >
-                                        <IonText className={classes.stepItem}>{label}</IonText>
-                                    </StepButton>
-                                </Step>
-                            );
-                        })}
-                    </Stepper>
-                    <IonText>{getStepContent(activeStep)}</IonText>
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            <Typography>2. The first jackpot</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                Are the odds with you? The first drawing will reveal it. <br/>
+                                Don’t waste the chance to win your own fortune!
+                                As soon as the presale is over,
+                                the first winner in the history of Solana NFT lotterys will get his wallet filled with sweet,
+                                sweet jackpot cash.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            <Typography>3. The Genesis sale</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                The main sale with the remaining 9’800 tickets will
+                                open after the presale winner is announced.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            <Typography>4. Lottery Dapp and DAO</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                After the sale finishes we will start with lotteries and begin to
+                                build a DAO with our community. <br/>
+                                This DAO will be in charge of selecting
+                                the jackpots and how we will spend
+                                the money to make the most exciting lotteries in the world!
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            <Typography>5. The fee lottery</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                Release of our additional one-way tickets.<br/>
+                                These tickets will only be valid once and will be burned if used for a lottery. <br/>
+                                The first row will be an airdrop to the owner addresses of the genesis NFTs.<br/>
+                                The Pot will be filled with fees from marketplace trading.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion className={classes.acordionBackground}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            <Typography>6. The expanding</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                Explorer more gaming related use cases for our NFT's and continue with
+                                great lotteries founded by sales fees and one way lottery tickets.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
                 </IonCardContent>
             </IonCardHeader>
         </IonCard>

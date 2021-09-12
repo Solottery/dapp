@@ -2,7 +2,7 @@ import MintButton from "../components/MintButton";
 import {
     IonButtons,
     IonCard,
-    IonCardHeader,
+    IonCardHeader, IonCardSubtitle,
     IonCardTitle,
     IonCol,
     IonContent,
@@ -46,6 +46,9 @@ const Mint: React.FC = () => {
                                     <IonCardTitle id="mint-card-title">
                                         Genesis Solottery Ticket
                                     </IonCardTitle>
+                                    <IonCardSubtitle>
+                                        1 SOL per ticket
+                                    </IonCardSubtitle>
                                 </IonCardHeader>
                                 <MintButton/>
                             </IonCard>

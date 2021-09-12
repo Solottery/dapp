@@ -29,7 +29,7 @@ const Welcome: React.FC = () => {
 
                     Join our community!
                     <br/>
-                    <a href="https://twitter.com/solottery_nft">Twitter</a> and <a href="https://discord.gg/CwUktFyju9">Discord</a>
+                    <a href="https://twitter.com/solottery_nft">Twitter</a> and <a href="https://discord.gg/sgFPQ2Ss">Discord</a>
                     <br/>
                     Good luck!
 
