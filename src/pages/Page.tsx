@@ -36,12 +36,16 @@ const Page: React.FC = () => {
                 </div>
 
                 <div id="roadmap-area">
-
                     <RoadMap/>
                 </div>
 
-                <Tickets/>
-                <UltraRares/>
+                <div id="ticket-area">
+                    <Tickets/>
+                </div>
+
+                <div id="ultra-rare-area">
+                    <UltraRares/>
+                </div>
 
                 <div id="faq-area">
                     <FAQ/>

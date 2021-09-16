@@ -66,7 +66,8 @@ const RoadMap: React.FC = () => {
                             </IonCardTitle>
                         </IonCardHeader>
                         <IonCardContent>
-                            Lottery Dapp for and a DAO<br/>
+                            The Lottery Dapp will be used for fair and transparent lotteries and make burner tickets possible.
+                            More on that in the next step! <br/>
                             The DAO will be in charge of selecting
                             the jackpots and making it the most exciting lottery in the world!
                         </IonCardContent>

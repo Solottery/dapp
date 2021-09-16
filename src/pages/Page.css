@@ -11,21 +11,28 @@ ion-content {
 }
 
 #welcome-area {
-    height: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #roadmap-area {
-    height: 100%;
     text-align: center;
 }
 
 #faq-area {
-    height: 90%;
+    min-height: 90%;
 }
 
 .center-title {
     text-align: center;
+}
+
+#ultra-rare-area {
+    margin-top: 2%;
+}
+
+#ticket-area {
+    margin-top: 10%;
 }
