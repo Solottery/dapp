@@ -13,4 +13,9 @@
 
 .card-title-center {
   text-align: center !important;
+  color: white;
+}
+
+.ticket-card{
+  background-color: #063A8C;
 }

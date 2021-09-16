@@ -1,5 +1,6 @@
 import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonRow} from "@ionic/react";
 import Ticket from "./Ticket";
+import {Fade, JackInTheBox, Slide} from "react-awesome-reveal";
 
 const images = [
     {
@@ -72,27 +73,20 @@ const images = [
 
 const FAQ: React.FC = () => {
     return (
-        <IonCard>
-            <IonCardHeader>
-                <IonCardTitle>
-                    Tickets
-                </IonCardTitle>
-                <IonCardContent>
-                    <IonGrid>
-                        <IonRow>
-                            {images.map((img, index) =>
-                                <IonCol>
-                                    <Ticket img={img.img}
-                                            amount={img.amount}
-                                            description={img.description}
-                                            name={img.name}/>
-                                </IonCol>
-                            )}
-                        </IonRow>
-                    </IonGrid>
-                </IonCardContent>
-            </IonCardHeader>
-        </IonCard>
+            <IonGrid>
+                <IonRow>
+                    {images.map((img, index) =>
+                        <IonCol>
+                            <JackInTheBox>
+                                <Ticket img={img.img}
+                                        amount={img.amount}
+                                        description={img.description}
+                                        name={img.name}/>
+                            </JackInTheBox>
+                        </IonCol>
+                    )}
+                </IonRow>
+            </IonGrid>
     );
 };
 

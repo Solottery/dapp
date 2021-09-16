@@ -3,12 +3,9 @@
 }
 
 ion-toolbar {
-    --background: gold;
+    --background: #135DD8;
 }
 
-.welcome-card {
-    max-width: 50%;
-    min-width: 400px;
-    margin: auto;
-    padding: 10px;
+ion-content {
+    --ion-background-color: #135DD8 !important;
 }

@@ -1,9 +1,10 @@
 
-.card-title-center {
-  text-align: center !important;
+.solottery-title {
+  font-size: xxx-large;
 }
 
-.card-with-gold {
-  border: 3px solid gold !important;
+.logo-image {
+  margin-left: auto;
+  margin-right: auto;
 }
 

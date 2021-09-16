@@ -1,41 +1,47 @@
-import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
-import './Ticket.css';
+import {
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle, IonCol,
+    IonGrid,
+    IonImg, IonRow
+} from "@ionic/react";
+import './Welcome.css';
+import {AttentionSeeker} from "react-awesome-reveal";
 
 
 const Welcome: React.FC = () => {
     return (
-        <IonCard className='card-with-gold'>
-            <IonCardHeader>
-                <IonCardTitle className='card-title-center'>
-                    Introducing Solottery
-                </IonCardTitle>
-                <IonCardSubtitle className='card-title-center'>
+        <IonGrid>
+            <IonRow>
+                <IonCol size="5" sizeXs="8" sizeLg="5" className="logo-image">
+                    <IonImg src={"/assets/img/Logo.png"}/>
+                </IonCol>
+                <IonCol className="ion-text-center" size="6" sizeXs="12" sizeLg="6">
+                    <h1 className="solottery-title">Introducing Solottery</h1>
                     The first Solana NFT lottery
-                </IonCardSubtitle>
-                <IonCardContent>
                     <br/>
-                    We throw the ticket revenues in a pot called Jack. <br/>
-                    The genesis collection will be valid for all the coming drawings.<br/>
-                    There will be weekly or more frequent lotteries with one or multiple winners.
-                    <br/>
-                    We will listen closely to the wishes of the community.
+                    Are you ready to gamble?
                     <br/>
                     <br/>
-                    <br/>
-                    Do you already feel the urge to mint your own ticket to a better life?
-                    <br/>
-                    Do it now before we are sold out.
-                    <br/>
-
                     Join our community!
                     <br/>
                     <a href="https://twitter.com/solottery_nft">Twitter</a> and <a href="https://discord.gg/NpxR7NUtnA">Discord</a>
                     <br/>
                     Good luck!
+                    <br/>
+                    <br/>
+                    <br/>
+                    <AttentionSeeker effect={'bounce'}>
+                        <IonButton color={'danger'}>MINT NOW!</IonButton>
+                    </AttentionSeeker>
 
-                </IonCardContent>
-            </IonCardHeader>
-        </IonCard>
+                </IonCol>
+            </IonRow>
+        </IonGrid>
+
     );
 };
 

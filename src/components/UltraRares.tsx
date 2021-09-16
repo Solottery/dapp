@@ -1,5 +1,6 @@
 import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonRow} from "@ionic/react";
 import Ticket from "./Ticket";
+import {JackInTheBox, Slide} from "react-awesome-reveal";
 
 const ultraRare = [
     {
@@ -31,10 +32,12 @@ const UltraRares: React.FC = () => {
                         <IonRow>
                             {ultraRare.map((img, index) =>
                                 <IonCol>
-                                    <Ticket img={img.img}
-                                            amount={img.amount}
-                                            description={img.description}
-                                            name={img.name}/>
+                                    <JackInTheBox>
+                                        <Ticket img={img.img}
+                                                amount={img.amount}
+                                                description={img.description}
+                                                name={img.name}/>
+                                    </JackInTheBox>
                                 </IonCol>
                             )}
                         </IonRow>

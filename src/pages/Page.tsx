@@ -19,11 +19,6 @@ import {logoDiscord, logoGithub, logoTwitter} from "ionicons/icons";
 
 
 const Page: React.FC = () => {
-    const welcomeStyle = {
-        width: "100%",
-        backgroundImage: "url(/assets/img/background.png)",
-        backgroundSize: "cover"
-    };
 
     return (
         <IonPage>
@@ -32,17 +27,14 @@ const Page: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton/>
                     </IonButtons>
-                    <IonTitle className={'title-text'}>Home</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
             <IonContent>
-                <div  style={welcomeStyle}>
-                    <div className='welcome-card'>
-                        <Welcome />
-                    </div>
+                <Welcome />
+                <div>
+                    <h1>ROADMAP</h1>
                 </div>
-
 
                 <RoadMap/>
                 <Tickets/>
