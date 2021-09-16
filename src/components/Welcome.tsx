@@ -7,7 +7,7 @@ const Welcome: React.FC = () => {
         <IonCard className='card-with-gold'>
             <IonCardHeader>
                 <IonCardTitle className='card-title-center'>
-                    Introdoucing Solottery
+                    Introducing Solottery
                 </IonCardTitle>
                 <IonCardSubtitle className='card-title-center'>
                     The first Solana NFT lottery
@@ -29,7 +29,7 @@ const Welcome: React.FC = () => {
 
                     Join our community!
                     <br/>
-                    <a href="https://twitter.com/solottery_nft">Twitter</a> and <a href="https://discord.gg/sgFPQ2Ss">Discord</a>
+                    <a href="https://twitter.com/solottery_nft">Twitter</a> and <a href="https://discord.gg/NpxR7NUtnA">Discord</a>
                     <br/>
                     Good luck!
 

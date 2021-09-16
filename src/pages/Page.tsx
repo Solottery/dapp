@@ -51,7 +51,7 @@ const Page: React.FC = () => {
                 <IonFooter>
                     <IonToolbar>
                         <div className="ion-text-center">
-                            <IonButton shape="round" href="https://discord.gg/sgFPQ2Ss">
+                            <IonButton shape="round" href="https://discord.gg/NpxR7NUtnA">
                                 <IonIcon icon={logoDiscord} />
                             </IonButton>
                             <IonButton shape="round" href="https://twitter.com/solottery_nft">
