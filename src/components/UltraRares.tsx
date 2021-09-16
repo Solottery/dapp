@@ -22,29 +22,24 @@ const ultraRare = [
 
 const UltraRares: React.FC = () => {
     return (
-        <IonCard>
-            <IonCardHeader>
-                <IonCardTitle>
-                    THE ULTRA RARES
-                </IonCardTitle>
-                <IonCardContent>
-                    <IonGrid>
-                        <IonRow>
-                            {ultraRare.map((img, index) =>
-                                <IonCol>
-                                    <JackInTheBox>
-                                        <Ticket img={img.img}
-                                                amount={img.amount}
-                                                description={img.description}
-                                                name={img.name}/>
-                                    </JackInTheBox>
-                                </IonCol>
-                            )}
-                        </IonRow>
-                    </IonGrid>
-                </IonCardContent>
-            </IonCardHeader>
-        </IonCard>
+        <div>
+            <h1 className="center-title">Ultra Rares</h1>
+            <IonGrid>
+                <IonRow>
+                    {ultraRare.map((img, index) =>
+                        <IonCol>
+                            <JackInTheBox>
+                                <Ticket img={img.img}
+                                        amount={img.amount}
+                                        description={img.description}
+                                        name={img.name}/>
+                            </JackInTheBox>
+                        </IonCol>
+                    )}
+                </IonRow>
+            </IonGrid>
+        </div>
+
     );
 };
 

@@ -1,144 +1,109 @@
 import {IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/react";
-import {useEffect, useState} from "react";
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    createStyles,
-    makeStyles,
-    Theme,
-    Typography
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            width: '100%',
-        },
-        heading: {
-            fontSize: theme.typography.pxToRem(15),
-            fontWeight: theme.typography.fontWeightRegular,
-        },
-        acordionBackground: {
-            backgroundColor: '#90A4AE'
-        }
-    }),
-);
-
+import {Slide} from "react-awesome-reveal";
+import './RoadMap.css';
 
 const RoadMap: React.FC = () => {
-    const classes = useStyles();
     return (
-        <IonCard>
-            <IonCardHeader>
-                <IonCardTitle>
-                    Roadmap
-                </IonCardTitle>
-                <IonCardContent>
-                    <Accordion className={classes.acordionBackground}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header">
-                            <Typography>1. The presale</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                To evaluate interests and reward early investors we start a presale with 200 Tickets.<br/>
-                                These tickets are randomly selected from the genesis collection of 10.000 Tickets.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+        <div>
+            <h1 className="center-title">Roadmap</h1>
 
-                    <Accordion className={classes.acordionBackground}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header">
-                            <Typography>2. The first jackpot</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                Are the odds with you? The first drawing will reveal it. <br/>
-                                Don’t waste the chance to win your own fortune!
-                                As soon as the presale is over,
-                                the first winner in the history of Solana NFT lotterys will get his wallet filled with sweet,
-                                sweet jackpot cash.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+            <div className="roadmapCardLeft">
+                <Slide>
+                    <IonCard className='road-map-card'>
+                        <IonCardHeader>
+                            <IonCardTitle>
+                                1. The Presale
+                            </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            Ultra limited selection of 200 Tickets. <br/>
+                            Many benefits to come for early adopters :)
+                        </IonCardContent>
+                    </IonCard>
+                </Slide>
+            </div>
 
-                    <Accordion className={classes.acordionBackground}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header">
-                            <Typography>3. The Genesis sale</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                The main sale with the remaining 9’800 tickets will
-                                open after the presale winner is announced.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+            <div className="roadmapCardRight">
+                <Slide direction={'right'}>
+                    <IonCard className='road-map-card'>
+                        <IonCardHeader>
+                            <IonCardTitle>
+                                2. The first Jackpot
+                            </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            Are the odds with you? The first drawing will reveal it. <br/>
+                            Lotter only for our presale buyers.<br/>
+                            May the odds be with you!<br/>
+                        </IonCardContent>
+                    </IonCard>
+                </Slide>
+            </div>
 
 
-                    <Accordion className={classes.acordionBackground}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header">
-                            <Typography>4. Lottery Dapp and DAO</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                After the sale finishes we will start with lotteries and begin to
-                                build a DAO with our community. <br/>
-                                This DAO will be in charge of selecting
-                                the jackpots and how we will spend
-                                the money to make the most exciting lotteries in the world!
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+            <div className="roadmapCardLeft">
+                <Slide>
+                    <IonCard className='road-map-card'>
+                        <IonCardHeader>
+                            <IonCardTitle>
+                                3. The Genesis Sale
+                            </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            The main sale with the remaining 9’800 tickets <br/>
+                        </IonCardContent>
+                    </IonCard>
+                </Slide>
+            </div>
 
 
-                    <Accordion className={classes.acordionBackground}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header">
-                            <Typography>5. The fee lottery</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                Release of our additional one-way tickets.<br/>
-                                These tickets will only be valid once and will be burned if used for a lottery. <br/>
-                                The first row will be an airdrop to the owner addresses of the genesis NFTs.<br/>
-                                The Pot will be filled with fees from marketplace trading.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion className={classes.acordionBackground}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header">
-                            <Typography>6. The expanding</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                Explorer more gaming related use cases for our NFT's and continue with
-                                great lotteries founded by sales fees and one way lottery tickets.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+            <div className="roadmapCardRight">
+                <Slide direction={'right'}>
+                    <IonCard className='road-map-card'>
+                        <IonCardHeader>
+                            <IonCardTitle>
+                                4. Lottery Dapp and DAO
+                            </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            Lottery Dapp for and a DAO<br/>
+                            The DAO will be in charge of selecting
+                            the jackpots and making it the most exciting lottery in the world!
+                        </IonCardContent>
+                    </IonCard>
+                </Slide>
+            </div>
 
-                </IonCardContent>
-            </IonCardHeader>
-        </IonCard>
+            <div className="roadmapCardLeft">
+                <Slide>
+                    <IonCard className='road-map-card'>
+                        <IonCardHeader>
+                            <IonCardTitle>
+                                5. Burner Tickets
+                            </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            Create and sell burner tickets only valid for one Lottery.
+                        </IonCardContent>
+                    </IonCard>
+                </Slide>
+            </div>
+
+            <div className="roadmapCardRight">
+                <Slide direction={'right'}>
+                    <IonCard className='road-map-card'>
+                        <IonCardHeader>
+                            <IonCardTitle>
+                                6. The expanding
+                            </IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            Become the best and biggest lottery in the world!
+                        </IonCardContent>
+                    </IonCard>
+                </Slide>
+            </div>
+        </div>
     );
 };
 

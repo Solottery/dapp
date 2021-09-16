@@ -73,6 +73,8 @@ const images = [
 
 const FAQ: React.FC = () => {
     return (
+        <div>
+            <h1 className="center-title">The Tickets</h1>
             <IonGrid>
                 <IonRow>
                     {images.map((img, index) =>
@@ -87,6 +89,8 @@ const FAQ: React.FC = () => {
                     )}
                 </IonRow>
             </IonGrid>
+        </div>
+
     );
 };
 

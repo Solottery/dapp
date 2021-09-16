@@ -29,7 +29,6 @@ const Mint: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton/>
                     </IonButtons>
-                    <IonTitle className="title-text">Mint</IonTitle>
                     <IonButtons slot="end">
                         <Wallet/>
                     </IonButtons>
@@ -46,8 +45,8 @@ const Mint: React.FC = () => {
                                     <IonCardTitle id="mint-card-title">
                                         Genesis Solottery Ticket
                                     </IonCardTitle>
-                                    <IonCardSubtitle>
-                                        1 SOL per ticket
+                                    <IonCardSubtitle className='mint-card-subtitle'>
+                                        0.1 SOL per Ticket
                                     </IonCardSubtitle>
                                 </IonCardHeader>
                                 <MintButton/>

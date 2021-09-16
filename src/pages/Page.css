@@ -9,3 +9,23 @@ ion-toolbar {
 ion-content {
     --ion-background-color: #135DD8 !important;
 }
+
+#welcome-area {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#roadmap-area {
+    height: 100%;
+    text-align: center;
+}
+
+#faq-area {
+    height: 90%;
+}
+
+.center-title {
+    text-align: center;
+}

@@ -52,9 +52,7 @@ const Menu: React.FC = () => {
     const location = useLocation();
 
     return (
-        <IonMenu contentId="main" type="overlay" style={{
-            backgroundImage: `url("assets/img/sidemenu.png) !important`
-        }}>
+        <IonMenu contentId="main" type="reveal">
             <IonContent>
                 <IonList id="inbox-list" >
                     <IonListHeader>Solottery</IonListHeader>
@@ -71,7 +69,6 @@ const Menu: React.FC = () => {
                         );
                     })}
                 </IonList>
-
             </IonContent>
         </IonMenu>
     );

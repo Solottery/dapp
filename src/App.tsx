@@ -47,19 +47,13 @@ const App: React.FC = () => {
         getSolflareWallet(),
     ], []);
 
-    useEffect(() => {
-        document.body.classList.toggle('dark');
-        console.log("dark");
-    })
-
     return (
         <IonApp>
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={wallets} autoConnect={true}>
-                    <WalletModalProvider>
-                        <ParallaxProvider>
+                    <WalletModalProvider logo="./assets/img/Logo.png">
                             <IonReactRouter basename={process.env.PUBLIC_URL}>
-                                <IonSplitPane contentId="main">
+                                <IonSplitPane contentId="main" when={false}>
                                     <Menu/>
                                     <IonRouterOutlet id="main">
                                         <Route path="/" exact={true}>
@@ -83,7 +77,6 @@ const App: React.FC = () => {
                                     </IonRouterOutlet>
                                 </IonSplitPane>
                             </IonReactRouter>
-                        </ParallaxProvider>
                     </WalletModalProvider>
                 </WalletProvider>
             </ConnectionProvider>

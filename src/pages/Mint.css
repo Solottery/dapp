@@ -5,7 +5,8 @@
   width: 50%;
   border: 3px solid gold;
   padding: 10px;
-  top: 25%;
+  top: 5%;
+  background-color: #063A8C;
 }
 
 .center-grid {
@@ -15,4 +16,9 @@
 #mint-card-title {
   text-align: center !important;
   font-size: xx-large !important;
+}
+
+.mint-card-subtitle {
+  text-align: center;
+  color: white;
 }

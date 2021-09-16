@@ -5,11 +5,12 @@ import {
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle, IonCol,
-    IonGrid,
+    IonGrid, IonIcon,
     IonImg, IonRow
 } from "@ionic/react";
 import './Welcome.css';
-import {AttentionSeeker} from "react-awesome-reveal";
+import {AttentionSeeker, Slide} from "react-awesome-reveal";
+import {ticket} from "ionicons/icons";
 
 
 const Welcome: React.FC = () => {
@@ -17,7 +18,9 @@ const Welcome: React.FC = () => {
         <IonGrid>
             <IonRow>
                 <IonCol size="5" sizeXs="8" sizeLg="5" className="logo-image">
-                    <IonImg src={"/assets/img/Logo.png"}/>
+                    <Slide>
+                        <IonImg src={"/assets/img/Logo.png"}/>
+                    </Slide>
                 </IonCol>
                 <IonCol className="ion-text-center" size="6" sizeXs="12" sizeLg="6">
                     <h1 className="solottery-title">Introducing Solottery</h1>
@@ -34,8 +37,11 @@ const Welcome: React.FC = () => {
                     <br/>
                     <br/>
                     <br/>
-                    <AttentionSeeker effect={'bounce'}>
-                        <IonButton color={'danger'}>MINT NOW!</IonButton>
+
+                    <AttentionSeeker effect={'tada'}>
+                        <IonButton color={'danger'} routerLink="/mint">
+                            <IonIcon slot="start" icon={ticket}/>
+                            MINT NOW!</IonButton>
                     </AttentionSeeker>
 
                 </IonCol>

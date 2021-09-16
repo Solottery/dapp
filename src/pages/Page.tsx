@@ -31,15 +31,22 @@ const Page: React.FC = () => {
             </IonHeader>
 
             <IonContent>
-                <Welcome />
-                <div>
-                    <h1>ROADMAP</h1>
+                <div id="welcome-area">
+                    <Welcome />
                 </div>
 
-                <RoadMap/>
+                <div id="roadmap-area">
+
+                    <RoadMap/>
+                </div>
+
                 <Tickets/>
                 <UltraRares/>
-                <FAQ/>
+
+                <div id="faq-area">
+                    <FAQ/>
+                </div>
+
                 <IonFooter>
                     <IonToolbar>
                         <div className="ion-text-center">

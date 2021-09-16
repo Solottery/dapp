@@ -1,0 +1,19 @@
+
+.roadmapCardLeft {
+  max-width: 500px;
+  margin: auto;
+}
+
+.roadmapCardRight {
+  max-width: 500px;
+  margin: auto;
+}
+
+.center-title {
+  font-size: xxx-large;
+  margin-bottom: 2%;
+}
+
+.road-map-card {
+  background-color: #063A8C;
+}

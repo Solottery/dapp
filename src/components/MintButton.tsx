@@ -17,6 +17,7 @@ import {TOKEN_METADATA_PROGRAM_ID, TOKEN_PROGRAM_ID} from "../helpers/constants"
 import {createAssociatedTokenAccountInstruction} from "../helpers/instructions";
 import MintedAmount from "./MintedAmount";
 import {awaitTransactionSignatureConfirmation} from "../helpers/candy-machine";
+import {AttentionSeeker} from "react-awesome-reveal";
 
 
 const MintButton: React.FC = () => {
@@ -125,11 +126,18 @@ const MintButton: React.FC = () => {
         }catch (error: any){
             let message = error.msg || "Minting failed! Please try again!";
             if (!error.msg) {
-                if (error.message.indexOf("0x138")) {
-                } else if (error.message.indexOf("0x137")) {
-                    message = `SOLD OUT!`;
-                } else if (error.message.indexOf("0x135")) {
-                    message = `Insufficient funds to mint. Please fund your wallet.`;
+                try {
+                    if(error.message){
+                        if (error.message.indexOf("0x138")) {
+                        } else if (error.message.indexOf("0x137")) {
+                            message = `SOLD OUT!`;
+                        } else if (error.message.indexOf("0x135")) {
+                            message = `Insufficient funds to mint. Please fund your wallet.`;
+                        }
+                    }
+                }catch (e){
+                    console.log(e);
+                    message = 'There was an unknown error. Check your wallet if minting worked. Else try again';
                 }
             } else {
                 if (error.code === 311) {
@@ -145,10 +153,13 @@ const MintButton: React.FC = () => {
     return (
         <IonGrid>
             <IonRow className="center-grid">
-                <IonButton onClick={() => mintNFT()}>
-                    <IonIcon slot="start" icon={ticket}/>
-                    Mint Now!
-                </IonButton>
+                <AttentionSeeker effect={'tada'}>
+                    <IonButton onClick={() => mintNFT()} color={'danger'}>
+                        <IonIcon slot="start" icon={ticket}/>
+                        Mint Now!
+                    </IonButton>
+                </AttentionSeeker>
+
             </IonRow>
             <IonRow className="center-grid">
                 <MintedAmount/>
