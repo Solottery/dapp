@@ -18,9 +18,7 @@ const Welcome: React.FC = () => {
         <IonGrid>
             <IonRow>
                 <IonCol size="5" sizeXs="8" sizeLg="5" className="logo-image">
-                    <Slide>
-                        <IonImg src={"/assets/img/Logo.png"}/>
-                    </Slide>
+                    <IonImg src={"/assets/img/Logo.png"}/>
                 </IonCol>
                 <IonCol className="ion-text-center" size="6" sizeXs="12" sizeLg="6">
                     <h1 className="solottery-title">Introducing Solottery</h1>

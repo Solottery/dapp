@@ -38,15 +38,19 @@ const FAQ: React.FC = () => {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typography className={classes.heading}>Why did you choose the solana chain?</Typography>
+                    <Typography className={classes.heading}>What is the Solottery?</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        We learnt to love the solona chain as we first minted our lovely NFTs. Furthermore we
-                        choose solana for the speed and the low cost.
+                        The Solottery will be a NFT based lottery on Solana.
+                        <br/>
+                        We plan to make frequent lotteries with the money from ticket sales.
+                        <br/>
+                        The prices will be selected by our DAO.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
+
             <Accordion className={classes.acordionBackground}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}
@@ -57,11 +61,63 @@ const FAQ: React.FC = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        In the presale phase there will be 200 tickets to mint. Afterwards we draw the first
-                        solottery winner in history.
+                        In the presale phase there will be 200 tickets to mint. <br/>
+                        Afterwards we draw the first Solottery winner in history.
                     </Typography>
                 </AccordionDetails>
             </Accordion>
+
+            <Accordion className={classes.acordionBackground}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon/>}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography className={classes.heading}>What are the benefits of the presale?</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>
+                        Presale buyers will be the participate in the first lottery.<br/>
+                        Because there are only 200 Tickets in the presale the chances of winning are very high. <br/>
+                        Later there will be more benefits in form of airdrops etc. for our early supporters.
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion className={classes.acordionBackground}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon/>}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography className={classes.heading}>How much is a presale ticket?</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>
+                        Our presale tickets only cost 0.1 Sol!
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion className={classes.acordionBackground}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon/>}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography className={classes.heading}>Is it save?</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>
+                        Yes our project uses the metaplex candymachine and our dapp is open source!
+                        <br/>
+                        We strive to make contributions to the solana ecosystem.
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+
+
+
 
             <Accordion className={classes.acordionBackground}>
                 <AccordionSummary
@@ -138,39 +194,6 @@ const FAQ: React.FC = () => {
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion className={classes.acordionBackground}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
-                    <Typography className={classes.heading}>What’s the price for one ticket in the secondary
-                        market?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        As you already guess it – the market will decide. But you should remember the fact that
-                        we generate lucky winners on a regular basis. As long as the lottery is going on, the
-                        tickets will have an intrinsic value. If you take a glance at the NFT markets, there is
-                        a lot of art where the price is determined by the taste of the buyer.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-
-            <Accordion className={classes.acordionBackground}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
-                    <Typography className={classes.heading}>What is up with the rare NFTs?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        The rare NFTs multiply your chance to win and / or the jackpot if you win.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
         </div>
 
     );

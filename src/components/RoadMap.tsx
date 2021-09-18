@@ -33,8 +33,7 @@ const RoadMap: React.FC = () => {
                         </IonCardHeader>
                         <IonCardContent>
                             Are the odds with you? The first drawing will reveal it. <br/>
-                            Lotter only for our presale buyers.<br/>
-                            May the odds be with you!<br/>
+                            This lottery is exclusively for our presale buyers.<br/>
                         </IonCardContent>
                     </IonCard>
                 </Slide>
@@ -50,7 +49,7 @@ const RoadMap: React.FC = () => {
                             </IonCardTitle>
                         </IonCardHeader>
                         <IonCardContent>
-                            The main sale with the remaining 9’800 tickets <br/>
+                            Complete the collection with the Genesis Sale Tickets<br/>
                         </IonCardContent>
                     </IonCard>
                 </Slide>
@@ -67,7 +66,10 @@ const RoadMap: React.FC = () => {
                         </IonCardHeader>
                         <IonCardContent>
                             The Lottery Dapp will be used for fair and transparent lotteries and make burner tickets possible.
-                            More on that in the next step! <br/>
+                            <br/>
+                            More on that in the next step!
+                            <br/>
+                            <br/>
                             The DAO will be in charge of selecting
                             the jackpots and making it the most exciting lottery in the world!
                         </IonCardContent>
