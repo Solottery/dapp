@@ -5,14 +5,13 @@
  * https://github.com/roederw/explorer/blob/roederw/nft-support
  * for the idea how to collect the data.
  */
-
 import {decodeMetadata, METADATA_PREFIX} from "../metaplex/metadata";
 import {METADATA_PROGRAM_ID, toPublicKey} from "../metaplex/ids";
-import {findProgramAddress} from "./candy-machine";
 import {PublicKey} from "@solana/web3.js";
 import * as anchor from "@project-serum/anchor";
 import axios from "axios";
 import {LotteryTicket} from "../models/lottery-ticket";
+import {TraitModel} from "../models/trait.model";
 
 
 export const getMetaDataFromMint = async (mintAddress: string, connection: anchor.web3.Connection): Promise<LotteryTicket> =>  {
@@ -42,10 +41,31 @@ export const getMetaDataFromMint = async (mintAddress: string, connection: ancho
     return {
         name: fullMetaData.data.name,
         img: fullMetaData.data.image,
-        winMultiplier:  fullMetaData.data.attributes[0],
-        playMultiplier:  fullMetaData.data.attributes[1],
-        ticketType:  fullMetaData.data.attributes[2],
+        winMultiplier: {
+            value: fullMetaData.data.attributes[0].value,
+            rarity: 0,
+            name: fullMetaData.data.attributes[0].trait_type,
+        } as TraitModel,
+        playMultiplier:  {
+            value: fullMetaData.data.attributes[1].value,
+            rarity: 0,
+            name: fullMetaData.data.attributes[1].trait_type,
+        } as TraitModel,
+        ticketType:  {
+            value: fullMetaData.data.attributes[2].value,
+            rarity: 0,
+            name: fullMetaData.data.attributes[2].trait_type,
+        } as TraitModel,
         owner: owner
     } as LotteryTicket;
 
 }
+
+export const findProgramAddress = async (
+    seeds: (Buffer | Uint8Array)[],
+    programId: PublicKey,
+) => {
+    const result = await PublicKey.findProgramAddress(seeds, programId);
+    return [result[0].toBase58(), result[1]] as [string, number];
+};
+

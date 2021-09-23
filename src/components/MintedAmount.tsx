@@ -1,7 +1,7 @@
 import {useConnection, useWallet} from "@solana/wallet-adapter-react";
 import {useCallback, useEffect, useState} from "react";
 import {IonButton} from "@ionic/react";
-import {getCandyMachineMints, getCandyMachineState} from "../helpers/candy-machine";
+import {getCandyMachineState} from "../helpers/candy-machine";
 import {MY_CANDY_MACHINE_ID} from "../helpers/constants";
 import * as anchor from "@project-serum/anchor";
 
@@ -18,7 +18,7 @@ const MintedAmount: React.FC = () => {
             signAllTransactions: wallet.signAllTransactions,
             signTransaction: wallet.signTransaction,
         } as anchor.Wallet;
-        const info = await getCandyMachineState(anchorWallet, MY_CANDY_MACHINE_ID, connection.connection)
+        const info = await getCandyMachineState(anchorWallet, connection.connection)
         setRemaining(info.itemsRemaining);
         setTotal(info.itemsAvailable);
 

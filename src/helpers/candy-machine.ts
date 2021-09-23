@@ -5,20 +5,12 @@
  */
 
 import * as anchor from "@project-serum/anchor";
-import {CANDY_MACHINE_PROGRAM_ID} from "./constants";
-import {AccountInfo, ParsedInstruction, PublicKey, TokenAccountsFilter} from "@solana/web3.js";
-import {
-    decodeMetadata,
-    getEdition,
-    MasterEditionV1,
-    MasterEditionV2,
-    METADATA_PREFIX,
-    MetadataKey
-} from "../metaplex/metadata";
-import {METADATA_PROGRAM_ID, StringPublicKey, toPublicKey} from "../metaplex/ids";
-import {BinaryReader, BinaryWriter} from "borsh";
-import base58 from "bs58";
+import {CANDY_MACHINE_PROGRAM_ID, MY_CANDY_MACHINE_ID, TICKETS_STORAGE_KEY} from "./constants";
+import { ParsedInstruction, PublicKey} from "@solana/web3.js";
 import {getMetaDataFromMint} from "./nft";
+import { Storage } from '@capacitor/storage';
+import {SerializableTicketList, TicketListModel} from "../models/ticket.list.model";
+import {LotteryTicket} from "../models/lottery-ticket";
 
 export interface CandyMachine {
     id: anchor.web3.PublicKey,
@@ -37,8 +29,7 @@ interface CandyMachineState {
 
 export const getCandyMachineState = async (
     anchorWallet: anchor.Wallet,
-    candyMachineId: anchor.web3.PublicKey,
-    connection: anchor.web3.Connection,
+    connection: anchor.web3.Connection
 ): Promise<CandyMachineState> => {
     const provider = new anchor.Provider(connection, anchorWallet, {
         preflightCommitment: "recent",
@@ -51,12 +42,12 @@ export const getCandyMachineState = async (
 
     const program = new anchor.Program(idl, CANDY_MACHINE_PROGRAM_ID, provider);
     const candyMachine = {
-        id: candyMachineId,
+        id: MY_CANDY_MACHINE_ID,
         connection,
         program,
     }
 
-    const state: any = await program.account.candyMachine.fetch(candyMachineId);
+    const state: any = await program.account.candyMachine.fetch(MY_CANDY_MACHINE_ID);
 
     const itemsAvailable = state.data.itemsAvailable.toNumber();
     const itemsRedeemed = state.itemsRedeemed.toNumber();
@@ -74,138 +65,65 @@ export const getCandyMachineState = async (
     };
 }
 
-export const extendBorsh = () => {
-    (BinaryReader.prototype as any).readPubkey = function () {
-        const reader = this as unknown as BinaryReader;
-        const array = reader.readFixedArray(32);
-        return new PublicKey(array);
-    };
+export const getAllMintedTickets = async (connection: anchor.web3.Connection,
+                                          anchorWallet: anchor.Wallet): Promise<TicketListModel> => {
 
-    (BinaryWriter.prototype as any).writePubkey = function (value: any) {
-        const writer = this as unknown as BinaryWriter;
-        writer.writeFixedArray(value.toBuffer());
-    };
+    const candyMachineInfo = await getCandyMachineState(anchorWallet, connection);
+    const cachedTickets = await Storage.get({key: TICKETS_STORAGE_KEY});
 
-    (BinaryReader.prototype as any).readPubkeyAsString = function () {
-        const reader = this as unknown as BinaryReader;
-        const array = reader.readFixedArray(32);
-        return base58.encode(array) as StringPublicKey;
-    };
+    if(cachedTickets.value){
+        const cachedList = JSON.parse(cachedTickets.value) as SerializableTicketList;
+        if(cachedList.amount == candyMachineInfo.itemsRedeemed){
+            return {
+                tickets: new Map(cachedList.tickets),
+                amount: cachedList.amount
+            } as TicketListModel;
+        }
+    }
 
-    (BinaryWriter.prototype as any).writePubkeyAsString = function (
-        value: StringPublicKey
-    ) {
-        const writer = this as unknown as BinaryWriter;
-        writer.writeFixedArray(base58.decode(value));
-    };
-};
-
-extendBorsh();
-
-
-export const getCandyMachineMints = async (connection: anchor.web3.Connection, candiMachine: PublicKey) =>  {
-    // const options =  {
-    //     limit: 25
-    // };
-    //
-    // const fetched = await connection.getConfirmedSignaturesForAddress2(
-    //     candiMachine,
-    //     options
-    // );
-    //
-    // const signatures = fetched.map(f => f.signature);
-    // const txs = await connection.getParsedConfirmedTransactions(signatures, 'confirmed');
-    // let mints = [];
-
-    // for(let tx in txs){
-    //     // console.log(txs[tx].transaction.message.instructions[1])
-    //     // const instruction = txs[tx].transaction.message.instructions[1] as ParsedInstruction;
-    //     // if(instruction && instruction.parsed.type === 'initializeMint'){
-    //     //     mints.push(instruction.parsed.info.mint);
-    //     // }
-    //     const accountInstruction = txs[tx].transaction.message.instructions[2] as ParsedInstruction;
-    //     if(accountInstruction){
-    //
-    //         if(accountInstruction && accountInstruction.parsed.type === 'create'){
-    //             mints.push({mint: accountInstruction.parsed.info.mint, account: accountInstruction.parsed.info.account});
-    //             console.log(accountInstruction.parsed.info);
-    //
-    //             let test = await connection.getAccountInfo(new PublicKey(accountInstruction.parsed.info.account), 'confirmed');
-    //             const buffer = Buffer.from(test.data)
-    //             const meta = decodeMetadata(buffer);
-    //             console.log(meta);
-    //         }
-    //     }
-    // }
-    let test = await getMetaDataFromMint('7GzvaWMt8pwiePD5GquBkG65NUt23djHaA8xycnCNWta', connection);
-
-        // let test = await connection.getAccountInfo(new PublicKey('HFzH3iYBXDmDD3DqvCje4n5PVRnJt3x4tcupXa7QkKGV'), 'confirmed');
-        // let metaData = await findProgramAddress(
-        // [
-        //     Buffer.from(METADATA_PREFIX),
-        //     toPublicKey(METADATA_PROGRAM_ID).toBuffer(),
-        //     toPublicKey('7GzvaWMt8pwiePD5GquBkG65NUt23djHaA8xycnCNWta').toBuffer(),
-        // ],
-        // toPublicKey(METADATA_PROGRAM_ID));
-        //
-        // console.log(metaData);
-        //
-        //
-        // if(isMetadataV1Account(test)){
-        //     const metadata = decodeMetadata(Buffer.from(test.data));
-        // }
-        //
-        // const metadata = decodeMetadata(Buffer.from(test.data));
-        // console.log(metadata);
-        // if (isEditionV1Account(test)) {
-        //     console.log("isEditionV1Account");
-        // }
-        //
-        // if (isMasterEditionAccount(test)) {
-        //     console.log("isMasterEditionAccount");
-        // }
-
-        // const meta = decodeMetadata(test.data);
-        // console.log(meta);
+    const list = await updateTicketList(connection);
+    await Storage.set({
+        key: TICKETS_STORAGE_KEY,
+        value: JSON.stringify({
+            tickets: Array.from(list.tickets.entries()),
+            amount: list.amount
+        } as SerializableTicketList)
+    });
+    return list;
 }
 
+const updateTicketList = async (connection: anchor.web3.Connection): Promise<TicketListModel> => {
+    const options =  {
+        limit: 25
+    };
 
+    const fetched = await connection.getConfirmedSignaturesForAddress2(
+        MY_CANDY_MACHINE_ID,
+        options
+    );
 
-export const findProgramAddress = async (
-    seeds: (Buffer | Uint8Array)[],
-    programId: PublicKey,
-) => {
+    const signatures = fetched.map(f => f.signature);
+    const txs = await connection.getParsedConfirmedTransactions(signatures, 'confirmed');
+    let mints = new Map<string, LotteryTicket>();
 
-    const key =
-        'pda-' +
-        seeds.reduce((agg, item) => agg + item.toString('hex'), '') +
-        programId.toString();
+    for(let tx in txs){
 
-    const result = await PublicKey.findProgramAddress(seeds, programId);
+        const accountInstruction = txs[tx].transaction.message.instructions[1] as ParsedInstruction;
+        if(accountInstruction){
 
-    return [result[0].toBase58(), result[1]] as [string, number];
-};
+            if(accountInstruction && accountInstruction.parsed.type === 'initializeMint'){
+                const mint = accountInstruction.parsed.info.mint;
+                const mintData = await getMetaDataFromMint(mint, connection);
+                mints.set(mintData.name, mintData);
+            }
+        }
+    }
 
-
-const isMetadataAccount = (account: AccountInfo<Buffer>) => {
-    return (account.owner as unknown as any) === METADATA_PROGRAM_ID;
-};
-
-const isMetadataV1Account = (account: AccountInfo<Buffer>) =>
-    account.data[0] === MetadataKey.MetadataV1;
-
-const isEditionV1Account = (account: AccountInfo<Buffer>) =>
-    account.data[0] === MetadataKey.EditionV1;
-
-const isMasterEditionAccount = (account: AccountInfo<Buffer>) =>
-    account.data[0] === MetadataKey.MasterEditionV1 ||
-    account.data[0] === MetadataKey.MasterEditionV2;
-
-const isMasterEditionV1 = (
-    me: MasterEditionV1 | MasterEditionV2,
-): me is MasterEditionV1 => {
-    return me.key === MetadataKey.MasterEditionV1;
-};
+    return {
+        amount: mints.size,
+        tickets: mints
+    }
+}
 
 
 export const awaitTransactionSignatureConfirmation = async (
@@ -229,7 +147,7 @@ export const awaitTransactionSignatureConfirmation = async (
             }
             done = true;
             console.log("Rejecting for timeout...");
-            reject({ timeout: true });
+            reject({timeout: true});
         }, timeout);
         try {
             subId = connection.onSignature(
