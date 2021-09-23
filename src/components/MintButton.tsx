@@ -118,6 +118,8 @@ const MintButton: React.FC = () => {
                 "singleGossip",
                 true);
 
+            console.log((result as any).err);
+
             if (!(result as any).err) {
                 await present("Congratulations! Mint succeeded!", 500);
             } else {

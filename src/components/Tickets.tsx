@@ -78,7 +78,7 @@ const FAQ: React.FC = () => {
             <IonGrid>
                 <IonRow>
                     {images.map((img, index) =>
-                        <IonCol>
+                        <IonCol key={img.name}>
                             <JackInTheBox>
                                 <Ticket img={img.img}
                                         amount={img.amount}

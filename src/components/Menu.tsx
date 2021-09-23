@@ -11,7 +11,7 @@ import {
 } from '@ionic/react';
 
 import {useLocation} from 'react-router-dom';
-import {colorWand, gift, home, rocket} from 'ionicons/icons';
+import {colorWand, gift, home, images, rocket} from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -33,6 +33,12 @@ const appPages: AppPage[] = [
         url: '/mint',
         iosIcon: colorWand,
         mdIcon: colorWand
+    },
+    {
+        title: 'Gallery',
+        url: '/viewer',
+        iosIcon: colorWand,
+        mdIcon: images
     },
     {
         title: 'Rarity',

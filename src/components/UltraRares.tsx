@@ -27,7 +27,7 @@ const UltraRares: React.FC = () => {
             <IonGrid>
                 <IonRow>
                     {ultraRare.map((img, index) =>
-                        <IonCol>
+                        <IonCol key={img.name}>
                             <JackInTheBox>
                                 <Ticket img={img.img}
                                         amount={img.amount}

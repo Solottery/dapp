@@ -105,7 +105,7 @@ const FAQ: React.FC = () => {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
-                    <Typography className={classes.heading}>Is it save?</Typography>
+                    <Typography className={classes.heading}>Is it safe?</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
@@ -115,9 +115,6 @@ const FAQ: React.FC = () => {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-
-
-
 
             <Accordion className={classes.acordionBackground}>
                 <AccordionSummary

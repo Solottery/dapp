@@ -32,6 +32,7 @@ import {getPhantomWallet, getSolflareWallet} from "@solana/wallet-adapter-wallet
 import {ParallaxProvider} from "react-scroll-parallax";
 import Rarity from "./pages/Rarity";
 import Lottery from "./pages/Lottery";
+import Gallery from "./pages/Gallery";
 
 const App: React.FC = () => {
     // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
@@ -73,6 +74,9 @@ const App: React.FC = () => {
                                         </Route>
                                         <Route path="/lottery">
                                             <Lottery/>
+                                        </Route>
+                                        <Route path="/viewer">
+                                            <Gallery/>
                                         </Route>
                                     </IonRouterOutlet>
                                 </IonSplitPane>
