@@ -6,11 +6,12 @@
 
 import * as anchor from "@project-serum/anchor";
 import {CANDY_MACHINE_PROGRAM_ID, MY_CANDY_MACHINE_ID, TICKETS_STORAGE_KEY} from "./constants";
-import { ParsedInstruction, PublicKey} from "@solana/web3.js";
+import {ConfirmedSignaturesForAddress2Options, ParsedInstruction, PublicKey} from "@solana/web3.js";
 import {getMetaDataFromMint} from "./nft";
 import { Storage } from '@capacitor/storage';
 import {SerializableTicketList, TicketListModel} from "../models/ticket.list.model";
 import {LotteryTicket} from "../models/lottery-ticket";
+import {codeSharp} from "ionicons/icons";
 
 export interface CandyMachine {
     id: anchor.web3.PublicKey,
@@ -71,31 +72,56 @@ export const getAllMintedTickets = async (connection: anchor.web3.Connection,
     const candyMachineInfo = await getCandyMachineState(anchorWallet, connection);
     const cachedTickets = await Storage.get({key: TICKETS_STORAGE_KEY});
 
+    let list: TicketListModel;
+
     if(cachedTickets.value){
         const cachedList = JSON.parse(cachedTickets.value) as SerializableTicketList;
+        list = {
+            tickets: new Map(cachedList.tickets),
+            amount: cachedList.amount,
+            lastSignature: cachedList.lastSignature
+        } as TicketListModel;
+
         if(cachedList.amount == candyMachineInfo.itemsRedeemed){
-            return {
-                tickets: new Map(cachedList.tickets),
-                amount: cachedList.amount
-            } as TicketListModel;
+            return list;
+        }else{
+            list = await updateTicketList(connection, cachedList.lastSignature, list.tickets);
         }
+    }else{
+        list = await updateTicketList(connection, '', new Map<string, LotteryTicket>());
     }
 
-    const list = await updateTicketList(connection);
     await Storage.set({
         key: TICKETS_STORAGE_KEY,
         value: JSON.stringify({
             tickets: Array.from(list.tickets.entries()),
-            amount: list.amount
+            amount: list.amount,
+            lastSignature: list.lastSignature
         } as SerializableTicketList)
     });
+    console.log(list.amount);
+
     return list;
+
 }
 
-const updateTicketList = async (connection: anchor.web3.Connection): Promise<TicketListModel> => {
-    const options =  {
-        limit: 25
-    };
+const updateTicketList = async (connection: anchor.web3.Connection,
+                                lastSignature: string,
+                                ticketList: Map<string, LotteryTicket>): Promise<TicketListModel> => {
+
+    let options: ConfirmedSignaturesForAddress2Options;
+
+    if(lastSignature !== ''){
+        options =  {
+            limit: 5,
+            before: lastSignature
+        };
+    }else{
+        options =  {
+            limit: 5,
+
+        };
+    }
 
     const fetched = await connection.getConfirmedSignaturesForAddress2(
         MY_CANDY_MACHINE_ID,
@@ -103,26 +129,28 @@ const updateTicketList = async (connection: anchor.web3.Connection): Promise<Tic
     );
 
     const signatures = fetched.map(f => f.signature);
+
     const txs = await connection.getParsedConfirmedTransactions(signatures, 'confirmed');
-    let mints = new Map<string, LotteryTicket>();
+
+    lastSignature = signatures[signatures.length - 1];
 
     for(let tx in txs){
-
         const accountInstruction = txs[tx].transaction.message.instructions[1] as ParsedInstruction;
         if(accountInstruction){
-
             if(accountInstruction && accountInstruction.parsed.type === 'initializeMint'){
                 const mint = accountInstruction.parsed.info.mint;
                 const mintData = await getMetaDataFromMint(mint, connection);
-                mints.set(mintData.name, mintData);
+                ticketList.set(mintData.name, mintData);
             }
         }
+        await sleep(2000);
     }
 
     return {
-        amount: mints.size,
-        tickets: mints
-    }
+        amount: ticketList.size,
+        tickets: ticketList,
+        lastSignature: lastSignature
+    } as TicketListModel
 }
 
 

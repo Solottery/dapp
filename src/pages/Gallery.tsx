@@ -7,34 +7,15 @@ import {
     IonMenuButton, IonPage, IonSearchbar, IonTitle,
     IonToolbar
 } from "@ionic/react";
-import {useCallback, useEffect, useState} from "react";
-import {getCandyMachineMints, getCandyMachineState} from "../helpers/candy-machine";
-import {useConnection, useWallet} from "@solana/wallet-adapter-react";
-import * as anchor from "@project-serum/anchor";
-import {MY_CANDY_MACHINE_ID} from "../helpers/constants";
+import {useCallback, useContext, useEffect, useState} from "react";
+import {TicketListContext} from "../hooks/useTicketList";
 
 
 const Lottery: React.FC = () => {
+    const tickets = useContext(TicketListContext);
 
-    const connection = useConnection();
     const [searchText, setSearchText] = useState('');
 
-    const getMintedTickets = useCallback(async () => {
-        await getCandyMachineMints(connection.connection, MY_CANDY_MACHINE_ID);
-    }, [connection]);
-
-    useEffect(( ) => {
-        const fetchData = async () => {
-            await getMintedTickets();
-        }
-        const interval = setInterval(() => {
-            fetchData()
-        }, 30000);
-
-        fetchData()
-
-        return () => clearInterval(interval);
-    }, [getMintedTickets]);
 
     return (
         <IonPage>

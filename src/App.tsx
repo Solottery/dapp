@@ -26,15 +26,16 @@ import Mint from "./pages/Mint";
 import {ConnectionProvider, WalletProvider} from "@solana/wallet-adapter-react";
 import {WalletModalProvider} from "@solana/wallet-adapter-react-ui";
 import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
-import {useEffect, useMemo} from "react";
+import {useMemo} from "react";
 import {clusterApiUrl} from "@solana/web3.js";
 import {getPhantomWallet, getSolflareWallet} from "@solana/wallet-adapter-wallets";
-import {ParallaxProvider} from "react-scroll-parallax";
 import Rarity from "./pages/Rarity";
 import Lottery from "./pages/Lottery";
 import Gallery from "./pages/Gallery";
+import {TicketListProvider} from "./hooks/useTicketList";
 
 const App: React.FC = () => {
+
     // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
     const network = WalletAdapterNetwork.Mainnet;
 
@@ -53,6 +54,7 @@ const App: React.FC = () => {
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={wallets} autoConnect={true}>
                     <WalletModalProvider logo="./assets/img/Logo.png">
+                        <TicketListProvider>
                             <IonReactRouter basename={process.env.PUBLIC_URL}>
                                 <IonSplitPane contentId="main" when={false}>
                                     <Menu/>
@@ -81,6 +83,7 @@ const App: React.FC = () => {
                                     </IonRouterOutlet>
                                 </IonSplitPane>
                             </IonReactRouter>
+                        </TicketListProvider>
                     </WalletModalProvider>
                 </WalletProvider>
             </ConnectionProvider>

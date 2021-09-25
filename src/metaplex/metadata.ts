@@ -1,5 +1,5 @@
 /**
- * Code from metaplex.
+ * Code from metaplex and roederw.
  * https://github.com/metaplex-foundation/metaplex
  * https://github.com/roederw/explorer/blob/roederw/nft-support
  */
