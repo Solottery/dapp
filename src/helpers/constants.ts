@@ -47,3 +47,5 @@ export const EXTENSION_JSON = '.json';
 
 
 export const TICKETS_STORAGE_KEY = 'tickets';
+
+export const BACKEND_URL = 'http://localhost:42424'

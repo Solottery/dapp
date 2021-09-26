@@ -1,33 +1,22 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {TicketListModel} from "../models/ticket.list.model";
-import {useConnection, useWallet} from "@solana/wallet-adapter-react";
-import {getAllMintedTickets, getCandyMachineState} from "../helpers/candy-machine";
-import * as anchor from "@project-serum/anchor";
+import axios from "axios";
+import {BACKEND_URL} from "../helpers/constants";
+import {LotteryTicket} from "../models/lottery-ticket";
 
-export const TicketListContext = createContext({} as TicketListModel);
+export const TicketListContext = createContext<LotteryTicket[]>([]);
 
 export const TicketListProvider: React.FC = (props) =>  {
 
-    const [tickets, setTickets] = useState({
-        amount: 0
-    } as TicketListModel);
-    const wallet = useWallet();
-    const connection = useConnection();
-
+    const [tickets, setTickets] = useState([] as LotteryTicket[]);
 
     const getMintedAmount = useCallback(async () => {
-        const anchorWallet = {
-            publicKey: wallet.publicKey,
-            signAllTransactions: wallet.signAllTransactions,
-            signTransaction: wallet.signTransaction,
-        } as anchor.Wallet;
-        const info = await getCandyMachineState(anchorWallet, connection.connection)
-        console.log(tickets.amount);
-        if(info.itemsRedeemed > tickets.amount){
-          const newList = await getAllMintedTickets(connection.connection, anchorWallet);
-          setTickets(newList);
+        let request = await axios.get(BACKEND_URL + '/tickets/');
+        if(request.data){
+            console.log(request.data)
+            setTickets(request.data);
         }
-    }, [connection, wallet]);
+    }, [setTickets]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,11 +25,12 @@ export const TicketListProvider: React.FC = (props) =>  {
 
         const interval = setInterval(() => {
             fetchData()
-        }, 1000);
+        }, 50000);
 
+        fetchData()
         return () => clearInterval(interval);
 
-    }, [wallet, connection, tickets]);
+    }, [setTickets]);
 
     return (
         <TicketListContext.Provider value={tickets}>

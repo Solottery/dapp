@@ -54,8 +54,9 @@ const App: React.FC = () => {
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={wallets} autoConnect={true}>
                     <WalletModalProvider logo="./assets/img/Logo.png">
-                        <TicketListProvider>
-                            <IonReactRouter basename={process.env.PUBLIC_URL}>
+
+                        <IonReactRouter basename={process.env.PUBLIC_URL}>
+                            <TicketListProvider>
                                 <IonSplitPane contentId="main" when={false}>
                                     <Menu/>
                                     <IonRouterOutlet id="main">
@@ -82,8 +83,8 @@ const App: React.FC = () => {
                                         </Route>
                                     </IonRouterOutlet>
                                 </IonSplitPane>
-                            </IonReactRouter>
-                        </TicketListProvider>
+                            </TicketListProvider>
+                        </IonReactRouter>
                     </WalletModalProvider>
                 </WalletProvider>
             </ConnectionProvider>

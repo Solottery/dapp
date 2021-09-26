@@ -9,6 +9,7 @@ import {
 } from "@ionic/react";
 import {useCallback, useContext, useEffect, useState} from "react";
 import {TicketListContext} from "../hooks/useTicketList";
+import ViewerList from "../components/ViewerList";
 
 
 const Lottery: React.FC = () => {
@@ -30,11 +31,7 @@ const Lottery: React.FC = () => {
             </IonHeader>
 
             <IonContent>
-                <IonCard>
-                    <IonCardContent>
-                        Coming soon...
-                    </IonCardContent>
-                </IonCard>
+                <ViewerList/>
             </IonContent>
 
         </IonPage>
