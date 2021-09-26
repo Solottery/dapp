@@ -15,7 +15,7 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
     const router = useIonRouter();
 
     useEffect(() => {
-        if(!props?.ticket){
+        if(!props?.ticket || !props.ticket?.img){
             router.goBack();
         }
     }, [router])
@@ -25,7 +25,7 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
             <h1 className={'center-detail-title'}>
                 {props?.ticket?.name}
             </h1>
-            <IonImg  src={props?.ticket.img} id={'detail-view-image'} />
+            <IonImg  src={props?.ticket?.img} id={'detail-view-image'} />
 
             <div id={'detail-view-block'}>
                 <IonGrid>
@@ -34,10 +34,10 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                             Ticket Type:
                         </IonCol>
                         <IonCol size={'3'}>
-                            {props?.ticket.ticketType.value}
+                            {props?.ticket?.ticketType.value}
                         </IonCol>
                         <IonCol size={'3'}>
-                            {props?.ticket.ticketType.rarity.toFixed(2)}%
+                            {props?.ticket?.ticketType.rarity.toFixed(2)}%
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -45,10 +45,10 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                             Win Multiplier:
                         </IonCol>
                         <IonCol size={'3'}>
-                            {props?.ticket.winMultiplier.value}
+                            {props?.ticket?.winMultiplier.value}
                         </IonCol>
                         <IonCol size={'3'}>
-                            {props?.ticket.winMultiplier.rarity.toFixed(2)}%
+                            {props?.ticket?.winMultiplier.rarity.toFixed(2)}%
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -56,10 +56,10 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                             Play Multiplier:
                         </IonCol>
                         <IonCol size={'3'}>
-                            {props?.ticket.playMultiplier.value}
+                            {props?.ticket?.playMultiplier.value}
                         </IonCol>
                         <IonCol size={'3'}>
-                            {props?.ticket.playMultiplier.rarity.toFixed(2)}%
+                            {props?.ticket?.playMultiplier.rarity.toFixed(2)}%
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -67,7 +67,8 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                             Address:
                         </IonCol>
                         <IonCol size={'6'}>
-                            <a href={"https://explorer.solana.com/address/" + props?.ticket.mint}>{props?.ticket.mint}</a>
+                            <a className={'link-color'}
+                               href={"https://explorer.solana.com/address/" + props?.ticket?.mint}>{props?.ticket?.mint}</a>
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -75,7 +76,8 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                             Owner:
                         </IonCol>
                         <IonCol size={'6'}>
-                            <a href={"https://explorer.solana.com/address/" + props?.ticket.owner}>{props?.ticket.owner}</a>
+                            <a className={'link-color'}
+                               href={"https://explorer.solana.com/address/" + props?.ticket?.owner}>{props?.ticket?.owner}</a>
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -83,7 +85,7 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                             Rarity Ranking:
                         </IonCol>
                         <IonCol size={'6'}>
-                            {props?.ticket.rarityRank}
+                            {props?.ticket?.rarityRank}
                         </IonCol>
                     </IonRow>
                 </IonGrid>

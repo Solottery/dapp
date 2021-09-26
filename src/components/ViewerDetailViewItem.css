@@ -12,6 +12,9 @@
   padding: 2%;
 }
 
+.link-color {
+  color: white !important;
+}
 .center-detail-title{
   text-align: center;
 }

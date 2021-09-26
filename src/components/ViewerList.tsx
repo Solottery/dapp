@@ -3,6 +3,7 @@ import {TicketListContext} from "../hooks/useTicketList";
 import {LotteryTicket} from "../models/lottery-ticket";
 import ViewerListItem from "./ViewerListItem";
 import {Box, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
+import "./ViewerList.css";
 
 const ViewerList: React.FC= () => {
 
@@ -101,6 +102,7 @@ const ViewerList: React.FC= () => {
                 <TableRow>
                     {headCells.map((headCell) => (
                         <TableCell align="center"
+                                   className={'lottery-table-header'}
                                    key={headCell.id}
                                    sortDirection={orderBy === headCell.id ? order : false}>
                             <TableSortLabel

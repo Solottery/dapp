@@ -18,18 +18,19 @@ const ViewerListItem: (props: TicketItemProps) => JSX.Element = (props: TicketIt
 
     return (
         <TableRow
+
             hover
             onClick={() => onItemClick(props.index)}
             key={props.index}
             sx={{'&:last-child td, &:last-child th': {border: 0}}}
         >
-            <TableCell component="th" scope="row" align="center">
+            <TableCell component="th" scope="row" align="center" className={'row-item'}>
                 {props.ticket.rarityRank}
             </TableCell>
             <TableCell align="center"><IonImg id="ticket-image-in-table" src={props.ticket.img}/></TableCell>
-            <TableCell align="center">{props.ticket.name}</TableCell>
-            <TableCell align="center">{props.ticket.playMultiplier.value}</TableCell>
-            <TableCell align="center">{props.ticket.winMultiplier.value}</TableCell>
+            <TableCell align="center" className={'row-item'}>{props.ticket.name}</TableCell>
+            <TableCell align="center" className={'row-item'}>{props.ticket.playMultiplier.value}</TableCell>
+            <TableCell align="center" className={'row-item'}>{props.ticket.winMultiplier.value}</TableCell>
         </TableRow>
     );
 };
