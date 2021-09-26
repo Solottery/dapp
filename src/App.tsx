@@ -33,6 +33,7 @@ import Rarity from "./pages/Rarity";
 import Lottery from "./pages/Lottery";
 import Gallery from "./pages/Gallery";
 import {TicketListProvider} from "./hooks/useTicketList";
+import ViewerDetailView from "./pages/ViewerDetailView";
 
 const App: React.FC = () => {
 
@@ -78,9 +79,8 @@ const App: React.FC = () => {
                                         <Route path="/lottery">
                                             <Lottery/>
                                         </Route>
-                                        <Route path="/viewer">
-                                            <Gallery/>
-                                        </Route>
+                                        <Route path="/gallery" component={Gallery}/>
+                                        <Route path="/viewer/:id" component={ViewerDetailView} />
                                     </IonRouterOutlet>
                                 </IonSplitPane>
                             </TicketListProvider>

@@ -1,0 +1,22 @@
+#detail-view-block {
+  margin: auto;
+  padding: 2%;
+  max-width: 750px;
+  text-align: left;
+}
+
+#detail-view-image {
+  max-width: 500px;
+  min-width: 200px;
+  margin: auto;
+  padding: 2%;
+}
+
+.center-detail-title{
+  text-align: center;
+}
+
+.center-detail-block {
+  min-width: 200px;
+  margin: auto;
+}

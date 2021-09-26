@@ -5,6 +5,9 @@ import {getCandyMachineState} from "../helpers/candy-machine";
 import {MY_CANDY_MACHINE_ID} from "../helpers/constants";
 import * as anchor from "@project-serum/anchor";
 
+
+import './MIntAmountButton.css';
+
 const MintedAmount: React.FC = () => {
 
     const connection = useConnection();
@@ -38,7 +41,7 @@ const MintedAmount: React.FC = () => {
     }, [getMintedAmount]);
 
     return (
-        <IonButton onClick={getMintedAmount}>{remaining}/{total} </IonButton>
+        <IonButton id='amount-left-button' onClick={getMintedAmount}>{remaining}/{total} left</IonButton>
     );
 };
 

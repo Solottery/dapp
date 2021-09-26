@@ -1,22 +1,11 @@
-import {
-    IonButtons,
-    IonCard,
-    IonCardContent,
-    IonContent,
-    IonHeader,
-    IonMenuButton, IonPage, IonSearchbar, IonTitle,
-    IonToolbar
-} from "@ionic/react";
-import {useCallback, useContext, useEffect, useState} from "react";
+import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
+import {useContext} from "react";
 import {TicketListContext} from "../hooks/useTicketList";
 import ViewerList from "../components/ViewerList";
+import {LotteryTicket} from "../models/lottery-ticket";
 
 
-const Lottery: React.FC = () => {
-    const tickets = useContext(TicketListContext);
-
-    const [searchText, setSearchText] = useState('');
-
+const Gallery: React.FC = () => {
 
     return (
         <IonPage>
@@ -27,15 +16,13 @@ const Lottery: React.FC = () => {
                     </IonButtons>
                     <IonTitle className={'title-text'}>Minted Tickets</IonTitle>
                 </IonToolbar>
-                <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}/>
             </IonHeader>
 
             <IonContent>
                 <ViewerList/>
             </IonContent>
-
         </IonPage>
     );
 };
 
-export default Lottery;
+export default Gallery;

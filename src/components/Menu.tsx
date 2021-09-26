@@ -36,7 +36,7 @@ const appPages: AppPage[] = [
     },
     {
         title: 'Gallery',
-        url: '/viewer',
+        url: '/gallery',
         iosIcon: colorWand,
         mdIcon: images
     },
