@@ -41,12 +41,6 @@ const appPages: AppPage[] = [
         mdIcon: images
     },
     {
-        title: 'Rarity',
-        url: '/rarity',
-        iosIcon: rocket,
-        mdIcon: rocket
-    },
-    {
         title: 'Lottery',
         url: '/lottery',
         iosIcon: gift,

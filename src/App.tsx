@@ -29,7 +29,6 @@ import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
 import {useMemo} from "react";
 import {clusterApiUrl} from "@solana/web3.js";
 import {getPhantomWallet, getSolflareWallet} from "@solana/wallet-adapter-wallets";
-import Rarity from "./pages/Rarity";
 import Lottery from "./pages/Lottery";
 import Gallery from "./pages/Gallery";
 import {TicketListProvider} from "./hooks/useTicketList";
@@ -72,9 +71,6 @@ const App: React.FC = () => {
                                         </Route>
                                         <Route path="/mint">
                                             <Mint/>
-                                        </Route>
-                                        <Route path="/rarity">
-                                            <Rarity/>
                                         </Route>
                                         <Route path="/lottery">
                                             <Lottery/>

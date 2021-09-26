@@ -4,12 +4,22 @@ import {LotteryTicket} from "../models/lottery-ticket";
 import ViewerListItem from "./ViewerListItem";
 import {Box, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
 import "./ViewerList.css";
+import {useWallet} from "@solana/wallet-adapter-react";
 
-const ViewerList: React.FC= () => {
+export interface ViewerListProps {
+    onlyMine: boolean;
+    isMobile: boolean;
+}
+
+const ViewerList: (props: ViewerListProps) => JSX.Element= (props: ViewerListProps) => {
 
     type sortType = 'asc' | 'desc';
 
     const tickets = useContext<LotteryTicket[]>(TicketListContext);
+
+    const filterTickets = (ticket: LotteryTicket) => {
+        return !wallet?.publicKey || !props.onlyMine || ticket.owner === wallet?.publicKey.toString();
+    }
 
     function descendingComparator(a: LotteryTicket, b: LotteryTicket, orderBy) {
         if(orderBy == 'ticket' ||  orderBy == 'number'){
@@ -50,30 +60,35 @@ const ViewerList: React.FC= () => {
             numeric: true,
             disablePadding: false,
             label: 'Rank',
+            visible: true
         },
         {
             id: 'ticket',
             numeric: true,
             disablePadding: false,
             label: 'Ticket',
+            visible: true
         },
         {
             id: 'number',
             numeric: true,
             disablePadding: false,
             label: 'Number',
+            visible: !props.isMobile
         },
         {
             id: 'play',
             numeric: true,
             disablePadding: false,
             label: 'Play Multiplier',
+            visible: !props.isMobile
         },
         {
             id: 'win',
             numeric: true,
             disablePadding: false,
             label: 'Win Multiplier',
+            visible: !props.isMobile
         },
     ];
 
@@ -96,11 +111,13 @@ const ViewerList: React.FC= () => {
         setOrderBy(property);
     };
 
+    const wallet = useWallet();
+
     return (
         <Table sx={{minWidth: 100}} stickyHeader aria-label="sticky table">
             <TableHead>
                 <TableRow>
-                    {headCells.map((headCell) => (
+                    {headCells.filter(t => t.visible).map((headCell) => (
                         <TableCell align="center"
                                    className={'lottery-table-header'}
                                    key={headCell.id}
@@ -117,9 +134,14 @@ const ViewerList: React.FC= () => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {tickets.sort(getComparator(order, orderBy))
+                {tickets
+                    .filter(filterTickets)
+                    .sort(getComparator(order, orderBy))
                     .map((row, index) =>
-                        <ViewerListItem key={index} index={index} ticket={row}/>
+                        <ViewerListItem isMobile={props.isMobile}
+                                        key={index}
+                                        index={index}
+                                        ticket={row}/>
                     )}
             </TableBody>
         </Table>
