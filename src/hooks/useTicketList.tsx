@@ -13,7 +13,6 @@ export const TicketListProvider: React.FC = (props) =>  {
     const getMintedAmount = useCallback(async () => {
         let request = await axios.get(BACKEND_URL + '/tickets/');
         if(request.data){
-            console.log(request.data)
             setTickets(request.data);
         }
     }, [setTickets]);

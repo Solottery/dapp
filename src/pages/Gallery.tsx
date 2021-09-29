@@ -31,7 +31,7 @@ const Gallery: React.FC = () => {
         setChecked(event.target.checked);
     }
 
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 720)
 
 //choose the screen size
     const handleResize = () => {

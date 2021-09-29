@@ -1,7 +1,4 @@
-import {
-    IonCard, IonCardTitle, IonCol, IonGrid,
-    IonImg, IonRow, useIonRouter,
-} from "@ionic/react";
+import {IonCol, IonGrid, IonImg, IonRow, useIonRouter,} from "@ionic/react";
 import {LotteryTicket} from "../models/lottery-ticket";
 import "./ViewerDetailViewItem.css";
 import {useEffect} from "react";
@@ -15,7 +12,7 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
     const router = useIonRouter();
 
     useEffect(() => {
-        if(!props?.ticket || !props.ticket?.img){
+        if (!props?.ticket || !props.ticket?.img) {
             router.goBack();
         }
     }, [router])
@@ -25,7 +22,7 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
             <h1 className={'center-detail-title'}>
                 {props?.ticket?.name}
             </h1>
-            <IonImg  src={props?.ticket?.img} id={'detail-view-image'} />
+            <IonImg src={props?.ticket?.img} id={'detail-view-image'}/>
 
             <div id={'detail-view-block'}>
                 <IonGrid>
@@ -90,7 +87,6 @@ const ViewerDetailViewItem: (props: TicketItemProps) => JSX.Element = (props: Ti
                     </IonRow>
                 </IonGrid>
             </div>
-
         </div>
     );
 };
