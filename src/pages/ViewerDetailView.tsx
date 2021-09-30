@@ -56,7 +56,7 @@ const ViewerDetailView: (props: ViewerDetailViewProps) => JSX.Element = (props: 
                     <IonButtons slot="start">
                         <IonMenuButton/>
                     </IonButtons>
-                    <IonTitle className={'title-text'}>Detail</IonTitle>
+                    <IonTitle>Detail</IonTitle>
                 </IonToolbar>
             </IonHeader>
 

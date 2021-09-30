@@ -45,7 +45,7 @@ const ViewerDetailView: (props: OwnerDetailViewProps) => JSX.Element = (props: O
                     <IonButtons slot="start">
                         <IonMenuButton/>
                     </IonButtons>
-                    <IonTitle className={'title-text'}>Owner Details</IonTitle>
+                    <IonTitle>Owner Details</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
