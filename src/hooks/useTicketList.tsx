@@ -1,18 +1,17 @@
-import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
-import {TicketListModel} from "../models/ticket.list.model";
+import React, {createContext, useCallback, useEffect, useState} from 'react';
 import axios from "axios";
 import {BACKEND_URL} from "../helpers/constants";
 import {LotteryTicket} from "../models/lottery-ticket";
 
 export const TicketListContext = createContext<LotteryTicket[]>([]);
 
-export const TicketListProvider: React.FC = (props) =>  {
+export const TicketListProvider: React.FC = (props) => {
 
     const [tickets, setTickets] = useState([] as LotteryTicket[]);
 
     const getMintedAmount = useCallback(async () => {
         let request = await axios.get(BACKEND_URL + '/tickets/');
-        if(request.data){
+        if (request.data) {
             setTickets(request.data);
         }
     }, [setTickets]);

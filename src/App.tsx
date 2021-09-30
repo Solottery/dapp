@@ -33,6 +33,9 @@ import Lottery from "./pages/Lottery";
 import Gallery from "./pages/Gallery";
 import {TicketListProvider} from "./hooks/useTicketList";
 import ViewerDetailView from "./pages/ViewerDetailView";
+import RichList from "./pages/RichList";
+import {OwnerListProvider} from "./hooks/useOwnerList";
+import OwnerDetailView from "./pages/OwnerDetailView";
 
 const App: React.FC = () => {
 
@@ -57,28 +60,36 @@ const App: React.FC = () => {
 
                         <IonReactRouter basename={process.env.PUBLIC_URL}>
                             <TicketListProvider>
-                                <IonSplitPane contentId="main" when={false}>
-                                    <Menu/>
-                                    <IonRouterOutlet id="main">
-                                        <Route path="/" exact={true}>
-                                            <Redirect to="/home"/>
-                                        </Route>
-                                        <Route path="/dapp" exact={true}>
-                                            <Redirect to="/home"/>
-                                        </Route>
-                                        <Route path="/home" exact={true}>
-                                            <Page/>
-                                        </Route>
-                                        <Route path="/mint">
-                                            <Mint/>
-                                        </Route>
-                                        <Route path="/lottery">
-                                            <Lottery/>
-                                        </Route>
-                                        <Route path="/gallery" component={Gallery}/>
-                                        <Route path="/viewer/:id" component={ViewerDetailView} />
-                                    </IonRouterOutlet>
-                                </IonSplitPane>
+                                <OwnerListProvider>
+                                    <IonSplitPane contentId="main" when={false}>
+                                        <Menu/>
+                                        <IonRouterOutlet id="main">
+                                            <Route path="/" exact={true}>
+                                                <Redirect to="/home"/>
+                                            </Route>
+                                            <Route path="/dapp" exact={true}>
+                                                <Redirect to="/home"/>
+                                            </Route>
+                                            <Route path="/home" exact={true}>
+                                                <Page/>
+                                            </Route>
+                                            <Route path="/mint">
+                                                <Mint/>
+                                            </Route>
+                                            <Route path="/lottery">
+                                                <Lottery/>
+                                            </Route>
+                                            <Route path="/gallery" component={Gallery}/>
+                                            <Route path="/viewer/:id" component={ViewerDetailView}/>
+
+
+                                            <Route path="/richList" component={RichList}/>
+                                            <Route path="/owner/:id" component={OwnerDetailView}/>
+
+
+                                        </IonRouterOutlet>
+                                    </IonSplitPane>
+                                </OwnerListProvider>
                             </TicketListProvider>
                         </IonReactRouter>
                     </WalletModalProvider>

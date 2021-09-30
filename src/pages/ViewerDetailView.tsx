@@ -25,8 +25,6 @@ const ViewerDetailView: (props: ViewerDetailViewProps) => JSX.Element = (props: 
     const tickets = useContext<LotteryTicket[]>(TicketListContext);
 
     const getTicketByNumber = (ticket: LotteryTicket) => {
-
-
         return ticket.name === 'Ticket: ' + props.match?.params?.id;
     }
 

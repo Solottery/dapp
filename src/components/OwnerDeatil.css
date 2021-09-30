@@ -1,0 +1,20 @@
+.ticket-detail-view {
+  max-width: 300px;
+}
+
+.ticket-list-container {
+  justify-content: center;
+  margin: auto;
+  max-width: 1000px;
+}
+
+.header-card-owner {
+  justify-content: center;
+  margin: auto;
+  margin-top: 2%;
+}
+
+#owner-rank-grid {
+  max-width: 300px !important;
+}
+
