@@ -1,8 +1,8 @@
-import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
+import {WalletDisconnectButton, WalletModalProvider, WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 
 const Wallet: React.FC = () => {
     return (
-        <WalletMultiButton/>
+        <WalletMultiButton />
     );
 };
 

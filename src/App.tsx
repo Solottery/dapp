@@ -28,7 +28,12 @@ import {WalletModalProvider} from "@solana/wallet-adapter-react-ui";
 import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
 import {useMemo} from "react";
 import {clusterApiUrl} from "@solana/web3.js";
-import {getPhantomWallet, getSolflareWallet} from "@solana/wallet-adapter-wallets";
+import {
+    getPhantomWallet, getSlopeWallet,
+    getSolflareWallet,
+    getSolletExtensionWallet,
+    getSolletWallet
+} from "@solana/wallet-adapter-wallets";
 import Lottery from "./pages/Lottery";
 import Gallery from "./pages/Gallery";
 import {TicketListProvider} from "./hooks/useTicketList";
@@ -36,6 +41,8 @@ import ViewerDetailView from "./pages/ViewerDetailView";
 import RichList from "./pages/RichList";
 import {OwnerListProvider} from "./hooks/useOwnerList";
 import OwnerDetailView from "./pages/OwnerDetailView";
+
+require('@solana/wallet-adapter-react-ui/styles.css');
 
 const App: React.FC = () => {
 
@@ -50,6 +57,9 @@ const App: React.FC = () => {
     const wallets = useMemo(() => [
         getPhantomWallet(),
         getSolflareWallet(),
+        getSolletWallet({ network }),
+        getSolletExtensionWallet({ network }),
+        getSlopeWallet(),
     ], []);
 
     return (
@@ -57,7 +67,6 @@ const App: React.FC = () => {
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={wallets} autoConnect={true}>
                     <WalletModalProvider logo="./assets/img/Logo.png">
-
                         <IonReactRouter basename={process.env.PUBLIC_URL}>
                             <TicketListProvider>
                                 <OwnerListProvider>
