@@ -1,11 +1,13 @@
 import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar} from "@ionic/react";
 import Wallet from "../components/Wallet";
-import './Mint.css';
+import './GiveAway.css';
 import {Box, Tab, Tabs, Typography} from "@mui/material";
 import {SyntheticEvent, useContext, useEffect, useState} from "react";
 import GiveAwayCard from "../components/GiveAwayCard";
 import {LotteryModel} from "../models/lotter.model";
 import {GiveAwayListContext} from "../hooks/useGiveAwayList";
+import {TicketListContext} from "../hooks/useTicketList";
+import {useWallet} from "@solana/wallet-adapter-react";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -33,7 +35,6 @@ function TabPanel(props: TabPanelProps) {
     );
 }
 
-
 const GiveAway: React.FC = () => {
     const [value, setValue] = useState(0);
 
@@ -46,6 +47,34 @@ const GiveAway: React.FC = () => {
         setValue(newValue);
     };
     const giveAways = useContext<LotteryModel[]>(GiveAwayListContext);
+    const tickets = useContext(TicketListContext);
+
+    const [winningChance, setWinningChance] = useState(0);
+    const wallet = useWallet();
+
+    useEffect(() => {
+
+        let amount = tickets.map(t => Number(t.playMultiplier.value));
+        let sumAmount = 0;
+        for (let i in amount) {
+            sumAmount = sumAmount + amount[i];
+        }
+
+        if (wallet?.publicKey) {
+            const userTickets = tickets
+                .filter(t => t.owner == wallet.publicKey.toString())
+                .map(t => Number(t.playMultiplier.value));
+
+            let userAmount = 0;
+            for (let i in userTickets) {
+                userAmount = userAmount + userTickets[i];
+            }
+            setWinningChance(100 / sumAmount * userAmount);
+        } else {
+            setWinningChance(-1);
+        }
+    }, [wallet, tickets, winningChance, setWinningChance])
+
 
     useEffect(() => {
         if (giveAways) {
@@ -64,17 +93,15 @@ const GiveAway: React.FC = () => {
             let past = giveAways.filter(g => new Date(g.time) < new Date());
             setUpcomingGiveAways(future.slice(1));
 
-            if(future.length == 0){
-                if(past.length != 0){
+            if (future.length == 0) {
+                if (past.length != 0) {
                     setCurrentGiveAway(past[0]);
                 }
-            }else{
+            } else {
                 setCurrentGiveAway(future[0]);
             }
             setPastGiveAways(past);
         }
-
-
     }, [giveAways, setCurrentGiveAway, setUpcomingGiveAways, setPastGiveAways]);
 
     return (
@@ -93,22 +120,29 @@ const GiveAway: React.FC = () => {
             <IonContent fullscreen>
                 <Box sx={{width: '100%', bgcolor: 'background.paper'}}>
                     <Tabs value={value} onChange={handleChange} centered>
-                        <Tab label="Lottery"/>
-                        <Tab label="Upcoming"/>
-                        <Tab label="Past"/>
+                        <Tab className={'tab-title-color'} label="Lottery"/>
+                        <Tab  className={'tab-title-color'} label="Upcoming"/>
+                        <Tab  className={'tab-title-color'} label="Past"/>
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    <GiveAwayCard ticket={currentGiveAway} index={0}/>
+                    <GiveAwayCard winningChance={winningChance} ticket={currentGiveAway} index={0}/>
+
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     {upcomingGiveAways.map(value => {
-                        return <GiveAwayCard key={value.id} index={value.id} ticket={value}/>;
+                        return <GiveAwayCard winningChance={winningChance}
+                                             key={value.id}
+                                             index={value.id}
+                                             ticket={value}/>;
                     })}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     {pastGiveAways.map(value => {
-                        return <GiveAwayCard key={value.id} index={value.id} ticket={value}/>;
+                        return <GiveAwayCard winningChance={winningChance}
+                                             key={value.id}
+                                             index={value.id}
+                                             ticket={value}/>;
                     })}
                 </TabPanel>
             </IonContent>

@@ -7,10 +7,12 @@ import Token from "./Token";
 import "./GiveAwayCard.css";
 import Winner from "./Winner";
 import {useEffect} from "react";
+import WinningChance from "./WinningChance";
 
 export interface GiveAwayCardProps {
-    index: number,
-    ticket: LotteryModel
+    index: number;
+    ticket: LotteryModel;
+    winningChance: number;
 }
 
 const GiveAwayCard: (props: GiveAwayCardProps) => JSX.Element = (props: GiveAwayCardProps) => {
@@ -31,6 +33,9 @@ const GiveAwayCard: (props: GiveAwayCardProps) => JSX.Element = (props: GiveAway
                    <br/>
                    <br/>
                     {props?.ticket?.finished ? <Winner winner={props?.ticket?.winner}/> : null}
+
+                    <WinningChance winningChance={props?.winningChance}/>
+
                     <h1 className={'card-title-center'}>Jackpot</h1>
                     <IonGrid>
                         <IonRow className={'centered-row'}>

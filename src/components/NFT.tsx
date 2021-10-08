@@ -10,7 +10,7 @@ const NFT: (probs: NftProps) => JSX.Element = (probs: NftProps) => {
     return (
         <IonCard className='jackpot-item-card'>
             <IonCardHeader>
-                <IonCardTitle>
+                <IonCardTitle className='card-title-center'>
                     {probs?.asset?.name}
                 </IonCardTitle>
                 <IonImg className={'jackpot-item-image'} src={probs?.asset?.preview}/>

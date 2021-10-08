@@ -1,14 +1,4 @@
-import {
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonCol,
-    IonGrid,
-    IonImg,
-    IonRow
-} from "@ionic/react";
+import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonImg} from "@ionic/react";
 import {LotteryResult} from "../models/lotter.model";
 import "./Winner.css";
 
@@ -22,19 +12,22 @@ const Winner: (props: WinnerProps) => JSX.Element = (props: WinnerProps) => {
     }
 
     return (
-        <IonCard className='jackpot-item-card'>
+        <IonCard className='winning-item-card'>
             <IonCardHeader className={'ion-text-center'}>
                 <h1 className={'winning-ticket-text'}>
                     WINNER
                 </h1>
                 <IonCardSubtitle>
-                   <a   href={'https://explorer.solana.com/address/' + props?.winner?.winner}>{props?.winner?.winner}</a>
+                    <a href={'https://explorer.solana.com/address/' + props?.winner?.winner}>{props?.winner?.winner}</a>
                 </IonCardSubtitle>
                 <br/>
                 <h2 className={'winning-ticket-text'}>Winning Ticket:</h2>
-                <IonImg onClick={showTicket} className={'jackpot-item-image'} src={props?.winner?.ticketUrl}/>
-                <IonCardContent className='card-title-center'>
-                </IonCardContent>
+                <IonImg onClick={showTicket} className={'winning-item-image'} src={props?.winner?.ticketUrl}/>
+
+                <h2 className={'winning-ticket-text'}>Transactions:</h2>
+                {props?.winner?.assets?.map(item => {
+                    return <a href={'https://explorer.solana.com/tx/' + item?.tx}>{item?.name}</a>
+                })}
             </IonCardHeader>
         </IonCard>
     );

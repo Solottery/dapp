@@ -29,7 +29,7 @@ export interface LotteryResult {
     winner: string;
     ticket: string;
     ticketUrl: string;
-    assets: []
+    assets: WinningAssets[]
 }
 
 export interface WinningAssets {

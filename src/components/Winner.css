@@ -1,4 +1,4 @@
-.jackpot-item-image {
+.winning-item-image {
   max-width: 450px;
   margin: auto;
   padding: 10px;
@@ -8,10 +8,7 @@
   color: white !important;
 }
 
-.jackpot-item-card{
-  min-height: 400px;
-  max-height: 400px;
+.winning-item-card{
   justify-content: center;
-  border: 3px solid gold;
   background-color: #063A8C;
 }

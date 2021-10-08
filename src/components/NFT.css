@@ -1,13 +1,8 @@
 .jackpot-item-image {
-  max-width: 150px;
-  min-width: 150px;
-  margin: auto;
-  padding: 10px;
+  max-width: 100%;
 }
 
 .jackpot-item-card{
-  min-height: 400px;
-  max-height: 400px;
   justify-content: center;
   border: 3px solid gold;
   background-color: #063A8C;
