@@ -1,0 +1,119 @@
+import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar} from "@ionic/react";
+import Wallet from "../components/Wallet";
+import './Mint.css';
+import {Box, Tab, Tabs, Typography} from "@mui/material";
+import {SyntheticEvent, useContext, useEffect, useState} from "react";
+import GiveAwayCard from "../components/GiveAwayCard";
+import {LotteryModel} from "../models/lotter.model";
+import {GiveAwayListContext} from "../hooks/useGiveAwayList";
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+    const {children, value, index, ...other} = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{p: 3}}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+
+const GiveAway: React.FC = () => {
+    const [value, setValue] = useState(0);
+
+    const [currentGiveAway, setCurrentGiveAway] = useState<LotteryModel>({assets: []} as LotteryModel);
+    const [upcomingGiveAways, setUpcomingGiveAways] = useState<LotteryModel[]>([]);
+    const [pastGiveAways, setPastGiveAways] = useState<LotteryModel[]>([]);
+
+
+    const handleChange = (event: SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+    const giveAways = useContext<LotteryModel[]>(GiveAwayListContext);
+
+    useEffect(() => {
+        if (giveAways) {
+            giveAways.sort((a, b) => {
+                if (a.time > b.time) {
+                    return 1;
+                }
+                if (a.time < b.time) {
+                    return -1;
+                }
+                return 0;
+            });
+
+            let future = giveAways;
+            future = future.filter(g => new Date(g.time) > new Date());
+            let past = giveAways.filter(g => new Date(g.time) < new Date());
+            setUpcomingGiveAways(future.slice(1));
+
+            if(future.length == 0){
+                if(past.length != 0){
+                    setCurrentGiveAway(past[0]);
+                }
+            }else{
+                setCurrentGiveAway(future[0]);
+            }
+            setPastGiveAways(past);
+        }
+
+
+    }, [giveAways, setCurrentGiveAway, setUpcomingGiveAways, setPastGiveAways]);
+
+    return (
+        <IonPage>
+            <IonHeader>
+                <IonToolbar>
+                    <IonButtons slot="start">
+                        <IonMenuButton/>
+                    </IonButtons>
+                    <IonButtons slot="end">
+                        <Wallet/>
+                    </IonButtons>
+                </IonToolbar>
+            </IonHeader>
+
+            <IonContent fullscreen>
+                <Box sx={{width: '100%', bgcolor: 'background.paper'}}>
+                    <Tabs value={value} onChange={handleChange} centered>
+                        <Tab label="Lottery"/>
+                        <Tab label="Upcoming"/>
+                        <Tab label="Past"/>
+                    </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                    <GiveAwayCard ticket={currentGiveAway} index={0}/>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    {upcomingGiveAways.map(value => {
+                        return <GiveAwayCard key={value.id} index={value.id} ticket={value}/>;
+                    })}
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    {pastGiveAways.map(value => {
+                        return <GiveAwayCard key={value.id} index={value.id} ticket={value}/>;
+                    })}
+                </TabPanel>
+            </IonContent>
+        </IonPage>
+    );
+};
+
+export default GiveAway;

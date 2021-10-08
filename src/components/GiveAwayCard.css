@@ -1,0 +1,20 @@
+.jack-pot-item {
+  max-width: 300px;
+}
+
+.centered-row {
+  justify-content: center;
+  margin: auto;
+}
+
+.countdown-timer {
+  color: white;
+  font-size: xxx-large;
+}
+
+.give-away-card {
+  justify-content: center;
+  margin: auto;
+  background-color: rgba(6, 58, 140, 0.4);
+  max-width: 1200px;
+}

@@ -29,18 +29,20 @@ import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
 import {useMemo} from "react";
 import {clusterApiUrl} from "@solana/web3.js";
 import {
-    getPhantomWallet, getSlopeWallet,
+    getPhantomWallet,
+    getSlopeWallet,
     getSolflareWallet,
     getSolletExtensionWallet,
     getSolletWallet
 } from "@solana/wallet-adapter-wallets";
-import Lottery from "./pages/Lottery";
 import Gallery from "./pages/Gallery";
 import {TicketListProvider} from "./hooks/useTicketList";
 import ViewerDetailView from "./pages/ViewerDetailView";
 import RichList from "./pages/RichList";
 import {OwnerListProvider} from "./hooks/useOwnerList";
 import OwnerDetailView from "./pages/OwnerDetailView";
+import GiveAway from "./pages/GiveAway";
+import {GiveAwayListProvider} from "./hooks/useGiveAwayList";
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 
@@ -57,8 +59,8 @@ const App: React.FC = () => {
     const wallets = useMemo(() => [
         getPhantomWallet(),
         getSolflareWallet(),
-        getSolletWallet({ network }),
-        getSolletExtensionWallet({ network }),
+        getSolletWallet({network}),
+        getSolletExtensionWallet({network}),
         getSlopeWallet(),
     ], []);
 
@@ -70,34 +72,35 @@ const App: React.FC = () => {
                         <IonReactRouter basename={process.env.PUBLIC_URL}>
                             <TicketListProvider>
                                 <OwnerListProvider>
-                                    <IonSplitPane contentId="main" when={false}>
-                                        <Menu/>
-                                        <IonRouterOutlet id="main">
-                                            <Route path="/" exact={true}>
-                                                <Redirect to="/home"/>
-                                            </Route>
-                                            <Route path="/dapp" exact={true}>
-                                                <Redirect to="/home"/>
-                                            </Route>
-                                            <Route path="/home" exact={true}>
-                                                <Page/>
-                                            </Route>
-                                            <Route path="/mint">
-                                                <Mint/>
-                                            </Route>
-                                            <Route path="/lottery">
-                                                <Lottery/>
-                                            </Route>
-                                            <Route path="/gallery" component={Gallery}/>
-                                            <Route path="/viewer/:id" component={ViewerDetailView}/>
+                                    <GiveAwayListProvider>
+                                        <IonSplitPane contentId="main" when={false}>
+                                            <Menu/>
+                                            <IonRouterOutlet id="main">
+                                                <Route path="/" exact={true}>
+                                                    <Redirect to="/home"/>
+                                                </Route>
+                                                <Route path="/dapp" exact={true}>
+                                                    <Redirect to="/home"/>
+                                                </Route>
+                                                <Route path="/home" exact={true}>
+                                                    <Page/>
+                                                </Route>
+                                                <Route path="/mint">
+                                                    <Mint/>
+                                                </Route>
+                                                <Route path="/lottery">
+                                                    <GiveAway/>
+                                                </Route>
 
+                                                <Route path="/gallery" component={Gallery}/>
+                                                <Route path="/viewer/:id" component={ViewerDetailView}/>
 
-                                            <Route path="/richList" component={RichList}/>
-                                            <Route path="/owner/:id" component={OwnerDetailView}/>
+                                                <Route path="/richList" component={RichList}/>
+                                                <Route path="/owner/:id" component={OwnerDetailView}/>
 
-
-                                        </IonRouterOutlet>
-                                    </IonSplitPane>
+                                            </IonRouterOutlet>
+                                        </IonSplitPane>
+                                    </GiveAwayListProvider>
                                 </OwnerListProvider>
                             </TicketListProvider>
                         </IonReactRouter>

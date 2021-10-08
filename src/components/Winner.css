@@ -1,0 +1,17 @@
+.jackpot-item-image {
+  max-width: 450px;
+  margin: auto;
+  padding: 10px;
+}
+
+.winning-ticket-text {
+  color: white !important;
+}
+
+.jackpot-item-card{
+  min-height: 400px;
+  max-height: 400px;
+  justify-content: center;
+  border: 3px solid gold;
+  background-color: #063A8C;
+}
