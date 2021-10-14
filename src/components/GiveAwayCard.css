@@ -12,9 +12,15 @@
   font-size: xxx-large;
 }
 
+.centered-text {
+  color: white;
+  text-align: center;
+}
+
 .give-away-card {
   justify-content: center;
   margin: auto;
   background-color: rgba(6, 58, 140, 0.4);
   max-width: 1200px;
+  margin-bottom: 2%;
 }

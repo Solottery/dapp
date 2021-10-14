@@ -8,7 +8,7 @@ export interface WinnerProps {
 
 const Winner: (props: WinnerProps) => JSX.Element = (props: WinnerProps) => {
     const showTicket = () => {
-        window.open('https://explorer.solana.com/address/' + props?.winner?.ticket)
+        window.open('https://solottery.fun/viewer/' + props?.winner?.ticketNumber)
     }
 
     return (
@@ -26,7 +26,7 @@ const Winner: (props: WinnerProps) => JSX.Element = (props: WinnerProps) => {
 
                 <h2 className={'winning-ticket-text'}>Transactions:</h2>
                 {props?.winner?.assets?.map(item => {
-                    return <a href={'https://explorer.solana.com/tx/' + item?.tx}>{item?.name}</a>
+                    return <div><a href={'https://explorer.solana.com/tx/' + item?.tx}>{item?.name}</a><br/></div>
                 })}
             </IonCardHeader>
         </IonCard>

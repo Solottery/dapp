@@ -48,5 +48,5 @@ export const EXTENSION_JSON = '.json';
 
 export const TICKETS_STORAGE_KEY = 'tickets';
 
-export const BACKEND_URL = 'http://localhost:42424'
-// export const BACKEND_URL = 'https://solottery-backup.fun'
+// export const BACKEND_URL = 'http://localhost:42424'
+export const BACKEND_URL = 'https://solottery-backup.fun'

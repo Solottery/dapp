@@ -1,4 +1,4 @@
-import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar} from "@ionic/react";
+import {IonButtons, IonContent, IonGrid, IonHeader, IonMenuButton, IonPage, IonRow, IonToolbar} from "@ionic/react";
 import Wallet from "../components/Wallet";
 import './GiveAway.css';
 import {Box, Tab, Tabs, Typography} from "@mui/material";
@@ -91,6 +91,15 @@ const GiveAway: React.FC = () => {
             let future = giveAways;
             future = future.filter(g => new Date(g.time) > new Date());
             let past = giveAways.filter(g => new Date(g.time) < new Date());
+            past.sort((a, b) => {
+                if (a.time < b.time) {
+                    return 1;
+                }
+                if (a.time > b.time) {
+                    return -1;
+                }
+                return 0;
+            });
             setUpcomingGiveAways(future.slice(1));
 
             if (future.length == 0) {
@@ -138,12 +147,17 @@ const GiveAway: React.FC = () => {
                     })}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    {pastGiveAways.map(value => {
-                        return <GiveAwayCard winningChance={winningChance}
-                                             key={value.id}
-                                             index={value.id}
-                                             ticket={value}/>;
-                    })}
+                    <IonGrid>
+
+                            {pastGiveAways.map(value => {
+                                return <IonRow><GiveAwayCard winningChance={winningChance}
+                                                     key={value.id}
+                                                     index={value.id}
+                                                     ticket={value}/></IonRow>;
+                            })}
+
+                    </IonGrid>
+
                 </TabPanel>
             </IonContent>
         </IonPage>
